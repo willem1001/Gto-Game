@@ -500,13 +500,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 542484867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0395512b6171b8f4caddb8aba9e8c559, type: 3}
+  m_Script: {fileID: 11500000, guid: 85e5d1b3a9980154c8b0aa2d7b51ace9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hex: {fileID: 100000, guid: 810f031adf54187488e59fbb06031d34, type: 3}
+  Hex: {fileID: 100000, guid: b8071826fffd07542809e27144afc07d, type: 3}
   AddedHexes: 1
-  Scale: 2
-  Startwidth: 3
+  Scale: 1
+  Startwidth: 6
 --- !u!4 &542484869
 Transform:
   m_ObjectHideFlags: 0

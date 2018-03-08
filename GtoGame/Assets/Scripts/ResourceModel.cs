@@ -4,12 +4,12 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts
 {
-    public class ResourceModel : MonoBehaviour
+    public class ResourceModel 
     {
-        private string Name { get; set; }
-        private string Discription { get; set; }
-        private float Amount { get; set; }
+        public string Name { get; set; }
+        public string Discription { get; set; }
+        public static float Amount { get; set; }
 
-        event EventHandler<Resource> 
+        
     }
 }

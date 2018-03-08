@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class Resource : MonoBehaviour {
+namespace Assets.Scripts
+{
+    public class ResourceControl : MonoBehaviour
+    {
+        private ResourceModel model;
+        private event EventHandler<ResourceTextChange> onChange; 
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        public void Start()
+        {
+            model = new ResourceModel();
+        }
+
+        public void Add()
+        {
+            model.Amount++;
+
+        }
+
+    }
 }

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33199450632944054}
   - component: {fileID: 23329122287437560}
   - component: {fileID: 65054973362638148}
+  - component: {fileID: 114584116382288014}
   m_Layer: 0
   m_Name: Hexagon_Grass
   m_TagString: Untagged
@@ -95,3 +96,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.73205, y: 2.0000005, z: 0.5000001}
   m_Center: {x: 0, y: 0, z: 0.25000006}
+--- !u!114 &114584116382288014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313668211967130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3e0b9cfa3057949ab29ac7492396ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

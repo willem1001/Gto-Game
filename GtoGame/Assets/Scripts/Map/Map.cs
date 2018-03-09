@@ -67,11 +67,6 @@ namespace Assets.Scripts
                 }
                 _hexNumber++;
             }
-            GameObject h = hexList[0];
-            GameObject c = Child;
-            GameObject ci = Instantiate(c);
-            ci.transform.position = h.transform.position;
-            ci.transform.parent = h.transform;
         }  
     }
 }

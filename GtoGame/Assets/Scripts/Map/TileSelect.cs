@@ -5,8 +5,6 @@ namespace Assets.Scripts
     public class TileSelect : MonoBehaviour
     {
         public GameObject Child;
-        private GameObject hit1;
-        private GameObject hit2;
         private GameObject _select;
 
         // Use this for initialization
@@ -27,7 +25,7 @@ namespace Assets.Scripts
                     _select = raycast.transform.gameObject;
                     if (_select.GetComponent<Tile>().HasChild()) return;
                     {
-                        GameObject child = Instantiate(Child, _select.transform.position, _select.transform.rotation, _select.transform);
+                        Instantiate(Child, _select.transform.position, _select.transform.rotation, _select.transform);
                         _select = null;
                     }
                 }
@@ -36,7 +34,7 @@ namespace Assets.Scripts
             {
                 RaycastHit raycast;
                 var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
-                if (hit)
+                if (hit && !raycast.transform.gameObject.GetComponent<Tile>().HasChild())
                 {
                     _select.GetComponent<Tile>().AddChild(raycast.transform.gameObject, _select.gameObject.transform.GetChild(0).gameObject);
                 }

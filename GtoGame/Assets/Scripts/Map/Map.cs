@@ -7,6 +7,7 @@ namespace Assets.Scripts
     public class Map : MonoBehaviour
     {
         public GameObject Hex;
+        public GameObject Child;
         public float AddedHexes;
         public float Scale;
         public float Startwidth;
@@ -55,21 +56,22 @@ namespace Assets.Scripts
 
             
                 currentHex.transform.SetPositionAndRotation(new Vector3((_hexNumber * 2 * XHexDifference + XHexDifference * -AddedHexes * _row) * Scale, _yScaleDifference, ZHexDifference * _row * Scale), Quaternion.Euler(new Vector3(90, 0, 0)));
-                Instantiate(currentHex);
-                hexList.Add(currentHex);
+                GameObject ch = Instantiate(currentHex);
+                hexList.Add(ch);
 
                 if (i <= _totalHexes - (Startwidth + (Startwidth - 1) *AddedHexes))
                 {     
                     oppositHex.transform.SetPositionAndRotation(new Vector3((_hexNumber * 2 * XHexDifference + XHexDifference * -AddedHexes * _row) * Scale, _yScaleDifference, ZHexDifference * (2 * Startwidth - _row - 2) * Scale), Quaternion.Euler(new Vector3(90, 0, 0)));
-                    Instantiate(oppositHex);
-                    hexList.Add(oppositHex);
+                    GameObject oh = Instantiate(oppositHex);
+                    hexList.Add(oh);
                 }
                 _hexNumber++;
             }
-
-        }
-
-     
-  
+            GameObject h = hexList[0];
+            GameObject c = Child;
+            GameObject ci = Instantiate(c);
+            ci.transform.position = h.transform.position;
+            ci.transform.parent = h.transform;
+        }  
     }
 }

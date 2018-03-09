@@ -4,6 +4,7 @@ namespace Assets.Scripts
 {
     public class TileSelect : MonoBehaviour
     {
+        public GameObject Child;
         private GameObject hit1;
         private GameObject hit2;
 
@@ -29,6 +30,14 @@ namespace Assets.Scripts
                     hit2 = raycast.transform.gameObject;
                     Debug.Log("2");
                 }
+            }
+            else if (hit1 != null && !hit1.GetComponent<Tile>().HasChild() && Input.GetKeyUp(KeyCode.Space))
+            {
+                GameObject c = Child;
+                GameObject ci = Instantiate(c);
+                ci.transform.position = hit1.transform.position;
+                ci.transform.parent = hit1.transform;
+                hit1 = null;
             }
             else if(Input.GetMouseButtonDown(1))
             {

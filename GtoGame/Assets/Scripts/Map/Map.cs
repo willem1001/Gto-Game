@@ -11,7 +11,7 @@ namespace Assets.Scripts
         public float AddedHexes;
         public float Scale;
         public float Startwidth;
-        private List<GameObject> hexList = new List<GameObject>();
+        public static List<GameObject> hexList = new List<GameObject>();
         private const float XHexDifference = 0.866025404f;
         private const float ZHexDifference = 1.5f;
         private float _row;

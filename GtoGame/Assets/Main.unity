@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a55cf4ce79a4ab43a157cdcbcb51a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitObject: {fileID: 1158064559720618, guid: 0867bdd5bdecd2441bc44a49290df70c, type: 2}
+  UnitObject: {fileID: 1158064559720618, guid: 0867bdd5bdecd2441bc44a49290df70c, type: 2}
 --- !u!1 &303525913
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +979,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Unit
+
+'
 --- !u!222 &1695283332
 CanvasRenderer:
   m_ObjectHideFlags: 0

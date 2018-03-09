@@ -219,12 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ce2ebe862954f44a2bd712d1fd0f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panSpeed: 20
-  panBorderThickness: 10
-  panLimit: {x: 10, y: 10}
-  scrollSpeed: 20
-  minY: 0
-  maxY: 40
+  PanSpeed: 20
+  PanBorderThickness: 10
+  PanLimit: {x: 10, y: 10}
+  ScrollSpeed: 20
+  MinY: 0
+  MaxY: 40
 --- !u!1 &265390334
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,10 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hex: {fileID: 1313668211967130, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
-  Child: {fileID: 1158064559720618, guid: 0867bdd5bdecd2441bc44a49290df70c, type: 2}
-  AddedHexes: 1
-  Scale: 1
-  Startwidth: 5
+  Startwidth: 50
 --- !u!4 &1575704534
 Transform:
   m_ObjectHideFlags: 0

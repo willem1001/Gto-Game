@@ -12,7 +12,6 @@ namespace Assets.Scripts.Resources
             {
                 if (hex.GetComponent<Tile>().HasChild()) continue;
                 GameObject unit = Instantiate(UnitObject, hex.transform.position, hex.transform.rotation);
-                unit.transform.SetParent(hex.transform);
                 break;
             }
         }

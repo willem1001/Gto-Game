@@ -8,7 +8,7 @@ namespace Assets.Scripts
         void Start () {
 		
         }
-	
+        
         // Update is called once per frame
         void Update () {
             if (Input.GetMouseButtonDown(0))
@@ -17,7 +17,10 @@ namespace Assets.Scripts
                 bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
                 if (hit)
                 {
-                    Destroy(raycast.transform.gameObject);
+                    //Destroy(raycast.transform.gameObject);
+                    
+                    //Debug.Log(raycast.transform.gameObject.GetComponent<Tile>().HasChild());
+                    raycast.transform.gameObject.GetComponent<Tile>().AddChild(gameObject, );
                 }
             }
         }

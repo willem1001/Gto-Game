@@ -5,7 +5,11 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - texture: {instanceID: 0}
+  - gameObject: {instanceID: 0}
+  - gameObjectChild: {instanceID: 0}
+  - hex: {fileID: 1313668211967130, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

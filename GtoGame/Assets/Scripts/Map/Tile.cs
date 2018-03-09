@@ -6,18 +6,16 @@ public class Tile : MonoBehaviour {
 
 
     public Texture texture;
-    public GameObject gameObject;
-    public GameObject gameObjectChild;
     public GameObject hex;
+    public Vector3 position;
     
     public bool HasChild()
     {
-        return this.gameObject.transform.childCount > 0;
+       return this.gameObject.transform.childCount > 0;
     }
 
-   public void Instantiate(Vector3 position)
-   {
-        Instantiate(hex, position, new Quaternion(90, 0, 0,0));
-   } 
-
+    public void AddChild(GameObject parentObject, GameObject childObject)
+    {
+        childObject.transform.parent = parentObject.transform;
+    }
 }

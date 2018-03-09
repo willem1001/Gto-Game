@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour {
 
-    public bool hasChild()
+    public bool HasChild()
     {
         return this.gameObject.transform.childCount > 0;
     }

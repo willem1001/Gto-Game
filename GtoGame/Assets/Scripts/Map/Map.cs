@@ -1,72 +1,79 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Map
 {
     public class Map : MonoBehaviour
     {
         public GameObject Hex;
-        public GameObject Child;
-        public float AddedHexes;
-        public float Scale;
-        public float Startwidth;
-        public static List<GameObject> hexList = new List<GameObject>();
+        public int Startwidth;
+        public static List<GameObject> HexList = new List<GameObject>();
         private const float XHexDifference = 0.866025404f;
         private const float ZHexDifference = 1.5f;
-        private float _row;
-        private float _hexNumber;
-        private float _totalHexes;
-        private float _yScaleDifference;
+        private readonly Random _random = new Random();
+        
 
 
         // Use this for initialization
-        void Start()
+        public void Start()
         {
-            System.Random rand = new System.Random();
-            for (int i = 0; i < Startwidth; i++)
+            for (var currentRow = 0; currentRow < Startwidth; currentRow++)
             {
-                _totalHexes += Startwidth + i * AddedHexes;
-            }
-
-            Hex.transform.localScale = new Vector3(Scale, Scale , Scale);
-            for (int i = 0; i < _totalHexes; i++)
-            {
-                if (_hexNumber >= Startwidth + AddedHexes * _row )
+                for (var currentHex = 0; currentHex < Startwidth + currentRow; currentHex++)
                 {
-                    _hexNumber = 0;
-                    _row++;
+                    var x = (currentHex * XHexDifference * 2) - (currentRow * XHexDifference);
+                    var z = (currentRow * ZHexDifference);
+                    var zOpposite = ZHexDifference * (2 * Startwidth - currentRow - 2);
+                    var heightScale = CreateHills(new Vector3(x, 1, z));
+                    var y = (heightScale - 1) * (Hex.transform.localScale.y / 2);
+
+                    GameObject hex = Instantiate(Hex, new Vector3(x, y, z), Quaternion.Euler(new Vector3(90, 0, 0)),
+                        gameObject.transform);
+                    hex.transform.localScale = new Vector3(1, 1, heightScale);
+                    HexList.Add(hex);
+
+                    if (currentRow == Startwidth - 1) continue;
+                    {
+                        GameObject hexOpposite = Instantiate(Hex, new Vector3(x, y, zOpposite),
+                            Quaternion.Euler(new Vector3(90, 0, 0)), gameObject.transform);
+                        hexOpposite.transform.localScale = new Vector3(1, 1, heightScale);
+                        HexList.Add(hexOpposite);
+                    }
                 }
+            }
+        }
 
-                GameObject oppositHex = Hex.gameObject;
-                GameObject currentHex = Hex.gameObject;
-                float random = rand.Next(0, 100);
-                if (random > 66)
+        public float CreateHills(Vector3 currentPosition)
+        {
+            var rand = _random.Next(1, 100);
+            Collider[] hitColliders = Physics.OverlapSphere(currentPosition, 0.866025404f * 2);
+            foreach (Collider c in hitColliders)
+            {
+                if (c.gameObject.transform.position == currentPosition) continue;
+                if (c.gameObject.transform.localScale.z > 1)
                 {
-                    currentHex.transform.localScale = new Vector3(Scale, Scale, Scale *2);
-                    oppositHex.transform.localScale = new Vector3(Scale, Scale, Scale *2);
-                    _yScaleDifference = Scale/2;
+                    if (c.gameObject.transform.localScale.z > 2)
+                    {
+                        if (rand < 50) return 2;
+                        {
+                            return 3;
+                        }
+                    }
+                    if (rand < 33) return 1;
+                    if (rand > 33 && rand < 66) return 2;
+                    if (rand > 66) return 3;
                 }
                 else
                 {
-                    currentHex.transform.localScale = new Vector3(Scale, Scale, Scale);
-                    oppositHex.transform.localScale = new Vector3(Scale, Scale, Scale);
-                    _yScaleDifference = 0;
+                    if (rand < 66) return 1;
+                    {
+                        return 2;
+                    }
                 }
-
-            
-                currentHex.transform.SetPositionAndRotation(new Vector3((_hexNumber * 2 * XHexDifference + XHexDifference * -AddedHexes * _row) * Scale, _yScaleDifference, ZHexDifference * _row * Scale), Quaternion.Euler(new Vector3(90, 0, 0)));
-                GameObject ch = Instantiate(currentHex);
-                hexList.Add(ch);
-
-                if (i <= _totalHexes - (Startwidth + (Startwidth - 1) *AddedHexes))
-                {     
-                    oppositHex.transform.SetPositionAndRotation(new Vector3((_hexNumber * 2 * XHexDifference + XHexDifference * -AddedHexes * _row) * Scale, _yScaleDifference, ZHexDifference * (2 * Startwidth - _row - 2) * Scale), Quaternion.Euler(new Vector3(90, 0, 0)));
-                    GameObject oh = Instantiate(oppositHex);
-                    hexList.Add(oh);
-                }
-                _hexNumber++;
             }
-        }  
+            return 1;
+        }
     }
 }

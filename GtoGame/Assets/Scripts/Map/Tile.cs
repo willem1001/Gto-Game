@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 
-public class Tile : MonoBehaviour
+namespace Assets.Scripts.Map
 {
-
-    public bool HasChild()
+    public class Tile : MonoBehaviour
     {
-        return this.gameObject.transform.childCount > 0;
-    }
 
-    public void AddChild(GameObject parentObject, GameObject childObject)
-    {
-        childObject.transform.parent = parentObject.transform;
-        childObject.transform.position = parentObject.transform.position;
+        public bool HasChild()
+        {
+            return gameObject.transform.childCount > 0;
+        }
+
+        public void AddChild(GameObject parentObject, GameObject childObject)
+        {
+            childObject.transform.parent = parentObject.transform;
+            childObject.transform.position = parentObject.transform.position;
+        }
     }
 }
 

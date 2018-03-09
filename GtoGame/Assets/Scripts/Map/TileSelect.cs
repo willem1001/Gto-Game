@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Map;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -30,7 +31,7 @@ namespace Assets.Scripts
                     }
                 }
             }
-            else if(Input.GetMouseButtonDown(1) && _select != null)
+            else if (Input.GetMouseButtonDown(1) && _select != null)
             {
                 RaycastHit raycast;
                 var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);

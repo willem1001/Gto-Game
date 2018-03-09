@@ -1,50 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Assets.Scripts.Map
 {
-
-    public float panSpeed = 20f;
-    public float panBorderThickness = 10f;
-
-    public Vector2 panLimit;
-    public float scrollSpeed = 20f;
-
-    public float minY =0f;
-    public float maxY=40f;
-    // Update is called once per frame
-    void Update()
+    public class CameraController : MonoBehaviour
     {
+        public float PanSpeed = 20f;
+        public float PanBorderThickness = 10f;
 
-        Vector3 position = transform.position;
-        if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
+        public Vector2 PanLimit;
+        public float ScrollSpeed = 20f;
+
+        public float MinY =0f;
+        public float MaxY=40f;
+        // Update is called once per frame
+        public void Update()
         {
-            position.z += panSpeed * Time.deltaTime;
+            Vector3 position = transform.position;
+            if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - PanBorderThickness)
+            {
+                position.z += PanSpeed * Time.deltaTime;
+            }
+
+            if (Input.GetKey("s") || Input.mousePosition.y <= PanBorderThickness)
+            {
+                position.z -= PanSpeed * Time.deltaTime;
+            }
+
+            if(Input.GetKey("d")||Input.mousePosition.x >= Screen.width - PanBorderThickness)
+            {
+                position.x += PanSpeed * Time.deltaTime;
+            }
+            if (Input.GetKey("a") || Input.mousePosition.x <= PanBorderThickness)
+            {
+                position.x -= PanSpeed * Time.deltaTime;
+            }
+
+            position.x = Mathf.Clamp(position.x, -PanLimit.x, PanLimit.x);
+            position.z = Mathf.Clamp(position.z, -PanLimit.y, PanLimit.y);
+            position.y = Mathf.Clamp(position.y, MinY, MaxY);
+
+            var scroll = Input.GetAxis("Mouse ScrollWheel");
+            position.y -= scroll * ScrollSpeed * 100f * Time.deltaTime;
+
+
+            transform.position = position;
         }
-
-        if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
-        {
-            position.z -= panSpeed * Time.deltaTime;
-        }
-
-        if(Input.GetKey("d")||Input.mousePosition.x >= Screen.width - panBorderThickness)
-        {
-            position.x += panSpeed * Time.deltaTime;
-        }
-        if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
-        {
-            position.x -= panSpeed * Time.deltaTime;
-        }
-
-        position.x = Mathf.Clamp(position.x, -panLimit.x, panLimit.x);
-        position.z = Mathf.Clamp(position.z, -panLimit.y, panLimit.y);
-        position.y = Mathf.Clamp(position.y, minY, maxY);
-
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        position.y -= scroll * scrollSpeed * 100f * Time.deltaTime;
-
-
-        transform.position = position;
     }
 }

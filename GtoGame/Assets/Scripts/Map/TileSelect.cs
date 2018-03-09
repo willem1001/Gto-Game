@@ -7,52 +7,39 @@ namespace Assets.Scripts
         public GameObject Child;
         private GameObject hit1;
         private GameObject hit2;
+        private GameObject _select;
 
         // Use this for initialization
-        void Start () {
-		
+        void Start()
+        {
+
         }
-        
+
         // Update is called once per frame
-        void Update () {
+        void Update()
+        {
             if (Input.GetMouseButtonDown(0))
             {
-                RaycastHit raycast = new RaycastHit();
-                bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
-                if (hit && hit1 == null)
+                RaycastHit raycast;
+                var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
+                if (!hit) return;
                 {
-                    hit1 = raycast.transform.gameObject;
-                    Tile t = hit1.GetComponent<Tile>();
-                    Debug.Log(t.HasChild());
-                }
-                else if (hit)
-                {
-                    hit2 = raycast.transform.gameObject;
-                    Debug.Log("2");
+                    _select = raycast.transform.gameObject;
+                    if (_select.GetComponent<Tile>().HasChild()) return;
+                    {
+                        GameObject child = Instantiate(Child, _select.transform.position, _select.transform.rotation, _select.transform);
+                        _select = null;
+                    }
                 }
             }
-            else if (hit1 != null && !hit1.GetComponent<Tile>().HasChild() && Input.GetKeyUp(KeyCode.Space))
+            else if(Input.GetMouseButtonDown(1) && _select != null)
             {
-                GameObject c = Child;
-                GameObject ci = Instantiate(c);
-                ci.transform.position = hit1.transform.position;
-                ci.transform.parent = hit1.transform;
-                hit1 = null;
-            }
-            else if(Input.GetMouseButtonDown(1))
-            {
-                hit2 = null;
-            }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
-                hit1.GetComponent<Tile>().AddChild(hit2, hit1.transform.GetChild(0).gameObject);
-                hit1 = null;
-                hit2 = null;
-            }
-            else if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                hit1 = null;
-                hit2 = null;
+                RaycastHit raycast;
+                var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
+                if (hit)
+                {
+                    _select.GetComponent<Tile>().AddChild(raycast.transform.gameObject, _select.gameObject.transform.GetChild(0).gameObject);
+                }
             }
         }
     }

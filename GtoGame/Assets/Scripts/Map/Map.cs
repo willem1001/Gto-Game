@@ -13,8 +13,6 @@ namespace Assets.Scripts.Map
         private const float XHexDifference = 0.866025404f;
         private const float ZHexDifference = 1.5f;
         private readonly Random _random = new Random();
-        
-
 
         // Use this for initialization
         public void Start()
@@ -48,7 +46,7 @@ namespace Assets.Scripts.Map
         public float CreateHills(Vector3 currentPosition)
         {
             var rand = _random.Next(1, 100);
-            Collider[] hitColliders = Physics.OverlapSphere(currentPosition, 0.866025404f * 2);
+            Collider[] hitColliders = Physics.OverlapSphere(currentPosition, XHexDifference * 2);
             foreach (Collider c in hitColliders)
             {
                 if (c.gameObject.transform.position == currentPosition) continue;

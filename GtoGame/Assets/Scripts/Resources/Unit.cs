@@ -1,19 +1,16 @@
-﻿using Assets.Scripts.Map;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Resources
+public class Unit : MonoBehaviour
 {
-    public class Unit : MonoBehaviour {
-        public GameObject UnitObject;
+    private Renderer renderer;
+    public Player player;
 
-        public void SpawnUnit()
-        {
-            foreach (var hex in Map.Map.HexList)
-            {
-                if (hex.GetComponent<Tile>().HasChild()) continue;
-                GameObject unit = Instantiate(UnitObject, hex.transform.position, hex.transform.rotation);
-                break;
-            }
-        }
+    public void Render(Player player)
+    {
+        this.player = player;
+        renderer = GetComponent<Renderer>();
+        renderer.material.color = player.color;
     }
 }

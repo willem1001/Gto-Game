@@ -34,7 +34,7 @@ public class Resource : MonoBehaviour
 
     public float GetQuantity()
     {
-        return Quantity;
+        return Quantity; 
     }
 
     public float GetInitialQuantity()

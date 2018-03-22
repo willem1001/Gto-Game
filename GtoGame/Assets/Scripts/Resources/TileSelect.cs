@@ -7,83 +7,50 @@ namespace Assets.Scripts
     {
         public UnitFactory Factory;
         private bool _inBuildMode;
-        private GameObject selectedObject = null;
+        private GameObject _selectedObject;
+        public Material _standardHexColor;
 
         void Update()
         {
-            // if (!_inBuildMode) return;
-            // if (!Input.GetMouseButtonDown(0)) return;
             RaycastHit raycast;
-            // var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
-            // if (!hit) return;
-            // {
-            //
-            // }
-            //else if (Input.GetMouseButtonDown(1) && _select != null)
-            //{
-            //    RaycastHit raycast;
-            //    var hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast);
-            //    if (hit && !raycast.transform.gameObject.GetComponent<Tile>().HasChild())
-            //    {
-            //        _select.GetComponent<Tile>().AddChild(raycast.transform.gameObject,
-            //            _select.gameObject.transform.GetChild(0).gameObject);
-            //    }
-            //}
+
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
             {
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && _inBuildMode)
                 {
                     Factory.SpawnUnit(raycast.transform.gameObject);
                 }
-                if (Input.GetMouseButton(1))
+                else if (Input.GetMouseButton(1))
                 {
-                    Debug.Log("selected: " + raycast.collider.name);
-                    selectedObject = raycast.transform.gameObject;
-                    SelectObject(selectedObject);
+                    SelectObject(raycast.transform.gameObject);
                 }
-                else
+            }
+
+        }
+        private void SelectObject(GameObject obj)
+        {
+            if (_selectedObject != null)
+            {
+                if (obj.transform.localPosition != _selectedObject.transform.localPosition)
                 {
                     ClearSelection();
                 }
             }
 
-        }
-        void SelectObject(GameObject obj)
-        {
-            if (selectedObject != null)
-            {
-                if (obj == selectedObject)
-                    return;
+            _selectedObject = obj;
 
-                ClearSelection();
-            }
+            var hexRenderer = _selectedObject.GetComponent<Renderer>();
+            hexRenderer.material.color = Color.yellow;
 
-            selectedObject = obj;
-
-            Renderer[] rs = selectedObject.GetComponentsInChildren<Renderer>();
-            foreach (Renderer r in rs)
-            {
-                Material m = r.material;
-                m.color = Color.green;
-                r.material = m;
-            }
+            _inBuildMode = false;
         }
 
-        void ClearSelection()
+        public void ClearSelection()
         {
-            if (selectedObject == null)
-                return;
 
-            Renderer[] rs = selectedObject.GetComponentsInChildren<Renderer>();
-            foreach (Renderer r in rs)
-            {
-                Material m = r.material;
-                m.color = Color.white;
-                r.material = m;
-            }
-
-
-            selectedObject = null;
+            var hexRenderer = _selectedObject.GetComponent<Renderer>();
+            hexRenderer.material = _standardHexColor;
+            _selectedObject = null;
         }
         public void EnterBuildMode()
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -19,7 +20,8 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
-        _players[_currentPlayer].EndTurn();
+        GetCurrentPlayer().GetComponentInChildren<TileSelect>().ClearSelection();
+        GetCurrentPlayer().EndTurn();
         _currentPlayer++;
         if (_currentPlayer >= _players.Count)
         {

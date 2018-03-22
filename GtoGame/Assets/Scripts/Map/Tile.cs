@@ -4,6 +4,7 @@ namespace Assets.Scripts.Map
 {
     public class Tile : MonoBehaviour
     {
+        public Vector3 position;
 
         public bool HasChild()
         {
@@ -20,6 +21,11 @@ namespace Assets.Scripts.Map
         {
             childObject.transform.parent = parentObject.transform;
             childObject.transform.position = parentObject.transform.position;
+        }
+
+        public void Setposition(Vector3 position)
+        {
+            this.position = position;
         }
     }
 }

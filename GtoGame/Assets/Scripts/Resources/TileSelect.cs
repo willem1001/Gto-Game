@@ -13,6 +13,14 @@ namespace Assets.Scripts
         void Update()
         {
             RaycastHit raycast;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast) && Input.GetMouseButtonDown(2))
+            {
+                Collider[] hitColliders = Physics.OverlapSphere(raycast.transform.gameObject.transform.position, (Mathf.Sqrt(3) / 2) * 5);
+                foreach (Collider c in hitColliders)
+                {
+                    c.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                }
+            }
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    public List<Player> _players;
+    public readonly List<Player> _players;
     private int _currentPlayer;
 
     void Start()
@@ -15,7 +15,7 @@ public class TurnManager : MonoBehaviour
             player.EndTurn();
         }
 
-        _players[_currentPlayer].StartTurn();
+       GetCurrentPlayer().StartTurn();
     }
 
     public void NextTurn()
@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
         {
             _currentPlayer = 0;
         }
-        _players[_currentPlayer].StartTurn();
+       GetCurrentPlayer().StartTurn();
     }
 
     public Player GetCurrentPlayer()

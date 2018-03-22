@@ -9,7 +9,7 @@ namespace Assets.Scripts.Map
     {
         public GameObject Hex;
         public int Startwidth;
-        public static List<GameObject> HexList = new List<GameObject>();
+        private List<GameObject> HexList = new List<GameObject>();
         private float XHexDifference = (Mathf.Sqrt(3)/2);
         private const float ZHexDifference = 1.5f;
         private readonly Random _random = new Random();
@@ -47,6 +47,7 @@ namespace Assets.Scripts.Map
             //        hex.GetComponent<Tile>().Setposition();
             //    }
 
+
             for (var z = 0; z < Startwidth; z++)
             {
                 for (var x = 0; x < Startwidth; x++)
@@ -54,13 +55,15 @@ namespace Assets.Scripts.Map
                     if (z % 2 == 0)
                     {
 
-                        GameObject hex = Instantiate(Hex, new Vector3(x * XHexDifference * 2 - XHexDifference, 1, z * ZHexDifference), Quaternion.Euler(new Vector3(90, 0, 0)), gameObject.transform);
-                        hex.GetComponent<Tile>().Setposition(new Vector3(x, (0 - z - x) , z));
+                        GameObject hex = Instantiate(Hex, new Vector3(x * XHexDifference * 2 + XHexDifference , 1, z * ZHexDifference), Quaternion.Euler(new Vector3(90, 0, 0)), gameObject.transform);
+                        hex.GetComponent<Tile>().Setposition(new Vector3((0 - z - x), z , x));
+                        HexList.Add(hex);
                     }
                     else
                     {
                         GameObject hex = Instantiate(Hex, new Vector3(x * XHexDifference * 2, 1, z * ZHexDifference), Quaternion.Euler(new Vector3(90, 0, 0)), gameObject.transform);
-                        hex.GetComponent<Tile>().Setposition(new Vector3(x, (0 - z - x), z));
+                        hex.GetComponent<Tile>().Setposition(new Vector3((0 - z - x), z, x));
+                        HexList.Add(hex);
                     }       
                 }
             }
@@ -69,6 +72,11 @@ namespace Assets.Scripts.Map
 
 
 
+        }
+
+        public List<GameObject> GetHexes()
+        {
+            return HexList;
         }
 
         //public float CreateHills(Vector3 currentPosition)

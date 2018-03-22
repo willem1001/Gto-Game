@@ -6,6 +6,7 @@ public class Unit : MonoBehaviour
 {
     private Renderer renderer;
     public Player player;
+    public float range = 2;
 
     public void Render(Player player)
     {

@@ -15,11 +15,7 @@ namespace Assets.Scripts
             RaycastHit raycast;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast) && Input.GetMouseButtonDown(2))
             {
-                Collider[] hitColliders = Physics.OverlapSphere(raycast.transform.gameObject.transform.position, (Mathf.Sqrt(3) / 2) * 5);
-                foreach (Collider c in hitColliders)
-                {
-                    c.gameObject.GetComponent<Renderer>().material.color = Color.red;
-                }
+               raycast.transform.gameObject.GetComponent<Tile>().range();
             }
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))

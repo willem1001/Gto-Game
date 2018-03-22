@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    public readonly List<Player> _players;
+    public List<Player> _players;
     private int _currentPlayer;
 
     void Start()

@@ -14,7 +14,7 @@ public class NewMap : MonoBehaviour
     private readonly float _zOffset  = 1.5f;
     public List<GameObject> HexList = new List<GameObject>();
 
-    private int xc;
+    private int _xCoordinateOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class NewMap : MonoBehaviour
 
 	        if (z % 2 == 0 && z != 0)
 	        {
-	            xc--;
+	            _xCoordinateOffset--;
 	        }
 	        for (int x = 0; x < width; x++)
 	        {
@@ -35,8 +35,8 @@ public class NewMap : MonoBehaviour
 	            }
 
 	            GameObject hexInstance = Instantiate(hex, new Vector3(xPos, 0, z * _zOffset), Quaternion.Euler(new Vector3(90, 0, 0)));
-	            hexInstance.name = "Hex_" + (x + xc) + "_" + (0 - (x + xc) - z) + "_" + z;
-                hexInstance.GetComponent<Tile>().position = new Vector3((x + xc), (0 - (x + xc) - z), z);
+	            hexInstance.name = "Hex_" + (x + _xCoordinateOffset) + "_" + (0 - (x + _xCoordinateOffset) - z) + "_" + z;
+                hexInstance.GetComponent<Tile>().position = new Vector3((x + _xCoordinateOffset), (0 - (x + _xCoordinateOffset) - z), z);
                 HexList.Add(hexInstance);
 	        }
 	    }

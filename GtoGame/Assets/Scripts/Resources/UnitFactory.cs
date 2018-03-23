@@ -33,6 +33,7 @@ public class UnitFactory : MonoBehaviour
             var g = transform.parent;
                 unit.GetComponent<Unit>().Render(GetComponentInParent<Player>());
             
+            
         }
     }
 }

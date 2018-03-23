@@ -948,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a98beec604bb9419fe3281c15ba410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Unit: {fileID: 1158064559720618, guid: 0867bdd5bdecd2441bc44a49290df70c, type: 2}
+  Unit: {fileID: 1109381200180776, guid: 908bb9616f6ae3a46a8ba4e899579667, type: 2}
   Costs:
   - {fileID: 634062861}
   TurnManager: {fileID: 452872321}

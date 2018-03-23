@@ -34,7 +34,7 @@ public class NewMap : MonoBehaviour
 	                xPos += _xOffset / 2;
 	            }
 
-	            GameObject hexInstance = Instantiate(hex, new Vector3(xPos, 0, z * _zOffset), Quaternion.Euler(new Vector3(90, 0, 0)));
+	            GameObject hexInstance = Instantiate(hex, new Vector3(xPos, randomHeight(), z * _zOffset), Quaternion.Euler(new Vector3(90, 0, 0)));
 	            hexInstance.name = "Hex_" + (x + _xCoordinateOffset) + "_" + (0 - (x + _xCoordinateOffset) - z) + "_" + z;
 	            hexInstance.isStatic = true;
                 hexInstance.transform.SetParent(this.transform);
@@ -53,4 +53,12 @@ public class NewMap : MonoBehaviour
 	void Update () {
 		
 	}
+
+   float randomHeight()
+    {
+        float number = Random.Range(0f, .5f);
+        return number;
+    }
+
+    
 }

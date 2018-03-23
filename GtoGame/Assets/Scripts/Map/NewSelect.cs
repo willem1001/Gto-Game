@@ -153,6 +153,10 @@ public class NewSelect : MonoBehaviour
             Vector3 startPos = unit.GetComponentInParent<Tile>().position;
             Vector3 endPos = tile.GetComponent<Tile>().position;
 
+            
+                unit.GetComponent<Unit>().TurnToTile(tile);
+            
+            
             Vector3 difference = startPos - endPos;
 
             if (difference.x == 1 || difference.y == 1 || difference.z == 1)

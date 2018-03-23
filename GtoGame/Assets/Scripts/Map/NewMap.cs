@@ -56,8 +56,8 @@ public class NewMap : MonoBehaviour
 
    float randomHeight()
     {
-        float number = Random.Range(0f, .5f);
-        return number;
+        return Random.Range(0f, .5f);
+        
     }
 
     

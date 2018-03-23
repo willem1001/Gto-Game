@@ -7,9 +7,13 @@ using UnityEngine;
 public class NewSelect : MonoBehaviour
 {
 
-    public float range;
     public GameObject map;
-    private readonly List<GameObject> SelectedHexes = new List<GameObject>();
+    public List<GameObject> _selectedHexes = new List<GameObject>();
+    public Material baseColor;
+    public UnitFactory Factory;
+    private bool _inBuildMode;
+    private GameObject _selectedUnit;
+
 
     // Use this for initialization
     void Start()
@@ -22,24 +26,51 @@ public class NewSelect : MonoBehaviour
     {
 
         RaycastHit raycast;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast) && Input.GetMouseButtonDown(0))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
         {
-            FindTiles(raycast.transform.gameObject);
+
+            GameObject tile = raycast.transform.gameObject;
+            if (tile.transform.childCount != 0 && Input.GetMouseButtonDown(0))
+            {
+                FindTiles(tile);
+            }
+            else if (tile.transform.childCount == 0 && Input.GetMouseButtonDown(0) && !_inBuildMode)
+            {
+                Deselect();
+                _selectedUnit = null;
+            }
+            else if (_inBuildMode && tile.transform.childCount == 0 && Input.GetMouseButtonDown(0))
+            {
+                Factory.SpawnUnit(tile);
+                _inBuildMode = false;
+            }
+            else if (Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 0)
+            {
+                moveUnit(tile, _selectedUnit);
+            }
         }
 
 
     }
 
 
-    void FindTiles(GameObject baseHex)
+    private void FindTiles(GameObject baseHex)
     {
+
+        Deselect();
+        _selectedUnit = baseHex.transform.GetChild(0).gameObject;
+
+        GameObject unit = baseHex.transform.GetChild(0).gameObject;
+        Unit unitScript = unit.GetComponent<Unit>();
+
+
         Vector3 basePos = baseHex.GetComponent<Tile>().position;
-        List<GameObject> hexList = map.GetComponent<NewMap>().HexList;
+        List<GameObject> hexList = map.GetComponent<NewMap>().getHexes();
         List<Vector3> points = new List<Vector3>();
 
 
 
-        for (var tile = 0; tile < range + 1; tile++)
+        for (var tile = 0; tile < unitScript.rangeLeft; tile++)
         {
             Vector3 middleRight = new Vector3(basePos.x + tile, basePos.y - tile, basePos.z);
             Vector3 middleLeft = new Vector3(basePos.x - tile, basePos.y + tile, basePos.z);
@@ -64,16 +95,22 @@ public class NewSelect : MonoBehaviour
 
         }
 
-        
+
 
         foreach (var point in points)
         {
-            SelectedHexes.AddRange(hexList.Where(hex => hex.GetComponent<Tile>().position.Equals(point)));
+            foreach (var hex in hexList)
+            {
+                if (hex.GetComponent<Tile>().position == point && !_selectedHexes.Contains(hex))
+                {
+                    _selectedHexes.Add(hex);
+                }
+            }
         }
 
-        foreach (var hex in SelectedHexes)
+        foreach (var hex in _selectedHexes)
         {
-            hex.GetComponent<Renderer>().material.color = Color.red;
+            hex.GetComponent<Renderer>().material.color = unitScript.player.color;
         }
 
 
@@ -87,9 +124,48 @@ public class NewSelect : MonoBehaviour
 
         for (int i = 1; i < tile; i++)
         {
-
-           points.Add(end + step * i);
+            points.Add(end + step * i);
         }
         return points;
+    }
+
+    public void Deselect()
+    {
+        foreach (var hex in _selectedHexes)
+        {
+            hex.GetComponent<Renderer>().material = baseColor;
+        }
+
+        _selectedHexes.Clear();
+    }
+
+    public void EnterBuildMode()
+    {
+        _inBuildMode = true;
+    }
+
+    private void moveUnit(GameObject tile, GameObject unit)
+    {
+        if (_selectedHexes.Contains(tile) && unit.GetComponent<Unit>().player.isCurrentPlayer)
+        {
+            Deselect();
+
+            Vector3 startPos = unit.GetComponentInParent<Tile>().position;
+            Vector3 endPos = tile.GetComponent<Tile>().position;
+
+            Vector3 difference = startPos - endPos;
+
+            if (difference.x == 1 || difference.y == 1 || difference.z == 1)
+            {
+                unit.GetComponent<Unit>().Move(1);
+            }
+            else
+            {
+                unit.GetComponent<Unit>().Move(2);
+            }
+
+            unit.transform.parent = tile.transform;
+            unit.transform.position = tile.transform.position;
+        }
     }
 }

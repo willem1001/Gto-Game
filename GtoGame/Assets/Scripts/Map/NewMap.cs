@@ -12,7 +12,7 @@ public class NewMap : MonoBehaviour
 
     private readonly float _xOffset = Mathf.Sqrt(3);
     private readonly float _zOffset  = 1.5f;
-    public List<GameObject> HexList = new List<GameObject>();
+    private readonly List<GameObject> _hexList = new List<GameObject>();
 
     private int _xCoordinateOffset;
 
@@ -39,10 +39,15 @@ public class NewMap : MonoBehaviour
 	            hexInstance.isStatic = true;
                 hexInstance.transform.SetParent(this.transform);
                 hexInstance.GetComponent<Tile>().position = new Vector3((x + _xCoordinateOffset), (0 - (x + _xCoordinateOffset) - z), z);
-                HexList.Add(hexInstance);
+                _hexList.Add(hexInstance);
 	        }
 	    }
 	}
+
+    public List<GameObject> getHexes()
+    {
+        return _hexList;
+    }
 	
 	// Update is called once per frame
 	void Update () {

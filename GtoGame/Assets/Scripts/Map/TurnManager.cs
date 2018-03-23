@@ -20,7 +20,7 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
-        GetCurrentPlayer().GetComponentInChildren<TileSelect>().ClearSelection();
+        GetCurrentPlayer().GetComponentInChildren<NewSelect>().Deselect();
         GetCurrentPlayer().EndTurn();
         _currentPlayer++;
         if (_currentPlayer >= _players.Count)

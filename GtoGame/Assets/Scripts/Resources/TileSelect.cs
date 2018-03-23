@@ -23,6 +23,7 @@ namespace Assets.Scripts
                 if (Input.GetMouseButton(0) && _inBuildMode)
                 {
                     Factory.SpawnUnit(raycast.transform.gameObject);
+                    _inBuildMode = false;
                 }
                 else if (Input.GetMouseButton(1))
                 {

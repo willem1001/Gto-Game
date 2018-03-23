@@ -7,11 +7,26 @@ public class Unit : MonoBehaviour
     private Renderer renderer;
     public Player player;
     public float range = 2;
+    public float rangeLeft;
+
+    void Start()
+    {
+        ResetMove();
+    }
 
     public void Render(Player player)
     {
         this.player = player;
         renderer = GetComponent<Renderer>();
         renderer.material.color = player.color;
+    }
+
+    public void Move(int moved)
+    {
+        rangeLeft -= moved;
+    }
+    public void ResetMove()
+    {
+        rangeLeft = range + 1;
     }
 }

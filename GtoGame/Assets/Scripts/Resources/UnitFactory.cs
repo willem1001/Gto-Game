@@ -30,8 +30,8 @@ public class UnitFactory : MonoBehaviour
                     cost.Pay();
                 }
                 GameObject unit = Instantiate(Unit, hex.transform);
-            var g = transform.parent;
                 unit.GetComponent<Unit>().Render(GetComponentInParent<Player>());
+                GetComponentInParent<Player>().UnitList.Add(unit);
             
             
         }

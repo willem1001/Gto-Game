@@ -29,11 +29,12 @@ public class NewSelect : MonoBehaviour
         RaycastHit raycast;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
         {
-
+            
             GameObject tile = raycast.transform.gameObject;
             if (tile.transform.childCount != 0 && Input.GetMouseButtonDown(0))
             {
-                FindTiles(tile);
+                FindTiles(tile, tile.transform.GetChild(0).gameObject.GetComponent<Unit>().rangeLeft);
+                _selectedUnit = tile.transform.GetChild(0).gameObject;
             }
             else if (tile.transform.childCount == 0 && Input.GetMouseButtonDown(0) && !_inBuildMode)
             {
@@ -49,20 +50,20 @@ public class NewSelect : MonoBehaviour
             {
                 moveUnit(tile, _selectedUnit);
             }
+            else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1)
+            {
+               attackUnit(tile, _selectedUnit);
+            }
         }
 
 
     }
 
 
-    private void FindTiles(GameObject baseHex)
+    private void FindTiles(GameObject baseHex, float range)
     {
 
         Deselect();
-        _selectedUnit = baseHex.transform.GetChild(0).gameObject;
-
-        GameObject unit = baseHex.transform.GetChild(0).gameObject;
-        Unit unitScript = unit.GetComponent<Unit>();
 
 
         Vector3 basePos = baseHex.GetComponent<Tile>().position;
@@ -71,7 +72,7 @@ public class NewSelect : MonoBehaviour
 
 
 
-        for (var tile = 0; tile < unitScript.rangeLeft; tile++)
+        for (var tile = 0; tile < range; tile++)
         {
             Vector3 middleRight = new Vector3(basePos.x + tile, basePos.y - tile, basePos.z);
             Vector3 middleLeft = new Vector3(basePos.x - tile, basePos.y + tile, basePos.z);
@@ -111,7 +112,7 @@ public class NewSelect : MonoBehaviour
 
         foreach (var hex in _selectedHexes)
         {
-            hex.GetComponent<Renderer>().material.color = unitScript.player.color;
+            hex.GetComponent<Renderer>().material.color = Color.red;
         }
 
 
@@ -165,5 +166,10 @@ public class NewSelect : MonoBehaviour
             unit.transform.parent = tile.transform;
             unit.transform.position = tile.transform.position;
         }
+    }
+
+    private void attackUnit(GameObject tile, GameObject unit)
+    { 
+        
     }
 }

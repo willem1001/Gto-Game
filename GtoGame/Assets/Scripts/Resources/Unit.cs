@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
 {
     private Renderer renderer;
     public Player player;
+    public float attackRange;
     public float range = 2;
     public float rangeLeft;
     public float attackRange = 2;

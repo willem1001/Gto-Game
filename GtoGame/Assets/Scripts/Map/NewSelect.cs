@@ -30,7 +30,7 @@ public class NewSelect : MonoBehaviour
         RaycastHit raycast;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
         {
-
+            
             GameObject tile = raycast.transform.gameObject;
             if (tile.transform.childCount != 0 && Input.GetMouseButtonDown(0))
             {
@@ -58,6 +58,10 @@ public class NewSelect : MonoBehaviour
             {
                 moveUnit(tile, _selectedUnit);
             }
+            else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1)
+            {
+               attackUnit(tile, _selectedUnit);
+            }
         }
 
 
@@ -68,10 +72,7 @@ public class NewSelect : MonoBehaviour
     {
 
         Deselect();
-        _selectedUnit = baseHex.transform.GetChild(0).gameObject;
 
-        GameObject unit = baseHex.transform.GetChild(0).gameObject;
-        Unit unitScript = unit.GetComponent<Unit>();
 
          movementHexes = TileFinder(baseHex, (int)unitScript.rangeLeft);
         if (fromActivePlayer)
@@ -201,5 +202,10 @@ public class NewSelect : MonoBehaviour
             unit.transform.parent = tile.transform;
             unit.transform.position = tile.transform.position;
         }
+    }
+
+    private void attackUnit(GameObject tile, GameObject unit)
+    { 
+        
     }
 }

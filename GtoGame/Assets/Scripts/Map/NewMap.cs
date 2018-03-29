@@ -44,7 +44,7 @@ public class NewMap : MonoBehaviour
                 _hexList.Add(hexInstance);
 	            foreach (var hex123 in _hexList)
 	            {
-	                hex123.GetComponent<Renderer>().material.color = Color.yellow;
+	                hex123.GetComponent<Renderer>().material.color = Color.black;
 	            }
 	        }
 	    }

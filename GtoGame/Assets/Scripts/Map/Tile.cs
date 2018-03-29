@@ -7,6 +7,7 @@ namespace Assets.Scripts.Map
     public class Tile : MonoBehaviour
     {
         public Vector3 position;
+        public Color prevColor;
 
         public bool HasChild()
         {

@@ -135,6 +135,7 @@ public class NewSelect : MonoBehaviour
         foreach (var hex in _selectedHexes)
         {
             hex.GetComponent<Renderer>().material = baseColor;
+            hex.GetComponent<Renderer>().material.color = hex.GetComponent<Tile>().prevColor;
         }
 
         _selectedHexes.Clear();

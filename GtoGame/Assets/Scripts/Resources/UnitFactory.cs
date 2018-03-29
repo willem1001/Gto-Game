@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Map;
 using Assets.Scripts.Resources;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitFactory : MonoBehaviour
 {
@@ -31,9 +32,11 @@ public class UnitFactory : MonoBehaviour
                 }
                 GameObject unit = Instantiate(Unit, hex.transform);
                 unit.GetComponent<Unit>().Render(GetComponentInParent<Player>());
+                
                 GetComponentInParent<Player>().UnitList.Add(unit);
-            
-            
+                
+                
+
         }
     }
 }

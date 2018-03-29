@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using Assets.Scripts.Map;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
     private Renderer renderer;
     public Player player;
-    public float attackRange;
+
     public float range = 2;
     public float rangeLeft;
     public float attackRange = 2;
 
-    public int maxHealth;
-    public int currentHealth;
+    public int maxHealth=100;
+    public int currentHealth=100;
     public int attackDamage;
     
     
@@ -53,6 +54,7 @@ public class Unit : MonoBehaviour
     public void Damaged(int damage)
     {
         currentHealth -= damage;
+        transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = .5f;
     }
 
     public void Die()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Map;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -37,7 +38,10 @@ public class Unit : MonoBehaviour
 
     public void TurnToTile(GameObject tileEnd)
     {
-        transform.LookAt(new Vector3(transform.position.x, transform.position.y, tileEnd.transform.position.z));
+        Vector3 difference = tileEnd.GetComponent<Tile>().position - transform.parent.GetComponent<Tile>().position;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(-90, 0, rotationZ - 135));
+
 
     }
 }

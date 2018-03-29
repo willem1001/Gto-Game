@@ -34,6 +34,7 @@ public class NewSelect : MonoBehaviour
             GameObject tile = raycast.transform.gameObject;
             if (tile.transform.childCount != 0 && Input.GetMouseButtonDown(0))
             {
+                _selectedUnit = tile.transform.GetChild(0).gameObject;
                 if (tile.GetComponentInChildren<Unit>().player.isCurrentPlayer)
                 {
                     FindTiles(tile, true);

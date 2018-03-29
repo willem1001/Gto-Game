@@ -10,8 +10,12 @@ public class Unit : MonoBehaviour
     public float attackRange;
     public float range = 2;
     public float rangeLeft;
+    public float attackRange = 2;
+
     public int maxHealth;
     public int currentHealth;
+    public int attackDamage;
+    
     
 
    
@@ -44,5 +48,20 @@ public class Unit : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(-90, 0, rotationZ - 135));
 
 
+    }
+
+    public void Damaged(int damage)
+    {
+        currentHealth -= damage;
+    }
+
+    public void Die()
+    {
+        Destroy(this);
+    }
+
+    public int Attack()
+    {
+        return attackDamage;
     }
 }

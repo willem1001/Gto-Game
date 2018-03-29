@@ -45,8 +45,6 @@ public class NewMap : MonoBehaviour
 	            foreach (var hex123 in _hexList)
 	            {
 	                hex123.GetComponent<Renderer>().material.color = Color.black;
-                    hex123.GetComponent<Tile>().prevColor=Color.black;
-	                
 	            }
 
                 hexInstance.GetComponent<Tile>().setBase();

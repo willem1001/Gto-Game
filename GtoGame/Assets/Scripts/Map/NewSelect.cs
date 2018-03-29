@@ -72,6 +72,7 @@ public class NewSelect : MonoBehaviour
     {
 
         Deselect();
+        Unit unitScript = baseHex.GetComponentInChildren<Unit>();
 
 
          movementHexes = TileFinder(baseHex, (int)unitScript.rangeLeft);

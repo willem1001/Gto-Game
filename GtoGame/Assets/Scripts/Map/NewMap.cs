@@ -42,10 +42,9 @@ public class NewMap : MonoBehaviour
                 hexInstance.transform.SetParent(this.transform);
                 hexInstance.GetComponent<Tile>().position = new Vector3((x + _xCoordinateOffset), (0 - (x + _xCoordinateOffset) - z), z);
                 _hexList.Add(hexInstance);
-	            foreach (var hex123 in _hexList)
-	            {
-	                hex123.GetComponent<Renderer>().material.color = Color.black;
-	            }
+	           
+
+	            _hexList[randomIndex()].GetComponent<Renderer>().material.color = Color.black;
 
                 hexInstance.GetComponent<Tile>().setBase();
 
@@ -63,6 +62,11 @@ public class NewMap : MonoBehaviour
 		
 	}
 
+
+    int randomIndex()
+    {
+        return Random.Range(0,_hexList.Count);
+    }
    float randomHeight()
     {
         return Random.Range(0f, .5f);

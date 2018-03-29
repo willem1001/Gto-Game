@@ -24,16 +24,17 @@ public class UnitFactory : MonoBehaviour
             }
 
             if (!canAfford) return;
-            
-                foreach (var cost in Costs)
-                {
-                    cost.Pay();
-                }
-                GameObject unit = Instantiate(Unit, hex.transform);
-                unit.GetComponent<Unit>().Render(GetComponentInParent<Player>());
-                GetComponentInParent<Player>().UnitList.Add(unit);
-            
-            
+
+            foreach (var cost in Costs)
+            {
+                cost.Pay();
+            }
+            GameObject unit = Instantiate(Unit, hex.transform);
+            unit.GetComponent<Unit>().player = GetComponentInParent<Player>();
+            unit.GetComponent<Unit>().Render(GetComponentInParent<Player>());
+            GetComponentInParent<Player>().UnitList.Add(unit);
+
+
         }
     }
 }

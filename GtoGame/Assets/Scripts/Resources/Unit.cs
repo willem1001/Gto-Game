@@ -7,9 +7,9 @@ public class Unit : MonoBehaviour
 {
     private Renderer renderer;
     public Player player;
-    public float range = 2;
+    public float range;
     public float rangeLeft;
-    public float attackRange = 2;
+    public float attackRange;
 
     public int maxHealth;
     public int currentHealth;
@@ -22,6 +22,7 @@ public class Unit : MonoBehaviour
     void Start()
     {
         ResetMove();
+        attackRange += 1;
     }
 
     public void Render(Player player)

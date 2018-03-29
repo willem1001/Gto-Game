@@ -7,6 +7,20 @@ namespace Assets.Scripts.Map
     public class Tile : MonoBehaviour
     {
         public Vector3 position;
+        public Color BaseColor;
+        public Material BaseMaterial;
+
+        public void setBase()
+        {
+            this.BaseColor = GetComponent<Renderer>().material.color;
+            this.BaseMaterial = GetComponent<Renderer>().material;
+        }
+
+        public void resetToBase()
+        {
+            GetComponent<Renderer>().material = BaseMaterial;
+            GetComponent<Renderer>().material.color = BaseColor;
+        }
 
         public bool HasChild()
         {

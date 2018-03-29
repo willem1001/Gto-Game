@@ -9,7 +9,8 @@ public class NewSelect : MonoBehaviour
 {
 
     public GameObject map;
-    public List<GameObject> _selectedHexes = new List<GameObject>();
+    List<GameObject> movementHexes = new List<GameObject>();
+    List<GameObject> attackHexes = new List<GameObject>();
     public Material baseColor;
     public UnitFactory Factory;
     private bool _inBuildMode;
@@ -33,7 +34,15 @@ public class NewSelect : MonoBehaviour
             GameObject tile = raycast.transform.gameObject;
             if (tile.transform.childCount != 0 && Input.GetMouseButtonDown(0))
             {
-                FindTiles(tile);
+                if (tile.GetComponentInChildren<Unit>().player.isCurrentPlayer)
+                {
+                    FindTiles(tile, true);
+                }
+                else
+                {
+                    FindTiles(tile, false);
+                }
+                
             }
             else if (tile.transform.childCount == 0 && Input.GetMouseButtonDown(0) && !_inBuildMode)
             {
@@ -55,7 +64,7 @@ public class NewSelect : MonoBehaviour
     }
 
 
-    private void FindTiles(GameObject baseHex)
+    private void FindTiles(GameObject baseHex, bool fromActivePlayer)
     {
 
         Deselect();
@@ -64,14 +73,42 @@ public class NewSelect : MonoBehaviour
         GameObject unit = baseHex.transform.GetChild(0).gameObject;
         Unit unitScript = unit.GetComponent<Unit>();
 
+         movementHexes = TileFinder(baseHex, (int)unitScript.rangeLeft);
+        if (fromActivePlayer)
+        {
+            attackHexes = TileFinder(baseHex, (int) unitScript.attackRange);
+        }
+        Debug.Log(attackHexes.Count);
 
+
+        foreach (var hex in movementHexes)
+        {
+            if (hex.transform.childCount == 0)
+            {
+                hex.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+
+        foreach (var hex in attackHexes)
+        {
+            if (hex.transform.childCount <= 0) continue;
+            if (!hex.transform.GetComponentInChildren<Unit>().player.isCurrentPlayer)
+            {
+                hex.GetComponent<Renderer>().material.color = Color.red;
+            }
+        }
+        
+
+    }
+
+    private List<GameObject> TileFinder(GameObject baseHex, int range)
+    {
         Vector3 basePos = baseHex.GetComponent<Tile>().position;
         List<GameObject> hexList = map.GetComponent<NewMap>().getHexes();
         List<Vector3> points = new List<Vector3>();
+        List<GameObject> foundHexes = new List<GameObject>();
 
-
-
-        for (var tile = 0; tile < unitScript.rangeLeft; tile++)
+        for (var tile = 1; tile < range; tile++)
         {
             Vector3 middleRight = new Vector3(basePos.x + tile, basePos.y - tile, basePos.z);
             Vector3 middleLeft = new Vector3(basePos.x - tile, basePos.y + tile, basePos.z);
@@ -102,19 +139,14 @@ public class NewSelect : MonoBehaviour
         {
             foreach (var hex in hexList)
             {
-                if (hex.GetComponent<Tile>().position == point && !_selectedHexes.Contains(hex))
+                if (hex.GetComponent<Tile>().position == point && !foundHexes.Contains(hex))
                 {
-                    _selectedHexes.Add(hex);
+                    foundHexes.Add(hex);
                 }
             }
         }
 
-        foreach (var hex in _selectedHexes)
-        {
-            hex.GetComponent<Renderer>().material.color = unitScript.player.color;
-        }
-
-
+        return foundHexes;
     }
 
     private List<Vector3> InbetweenTiles(Vector3 start, Vector3 end, int tile)
@@ -132,12 +164,17 @@ public class NewSelect : MonoBehaviour
 
     public void Deselect()
     {
-        foreach (var hex in _selectedHexes)
+        foreach (var hex in movementHexes)
         {
-            hex.GetComponent<Renderer>().material = baseColor;
+            hex.GetComponent<Tile>().resetToBase();
+        }
+        foreach (var hex in attackHexes)
+        {
+            hex.GetComponent<Tile>().resetToBase();
         }
 
-        _selectedHexes.Clear();
+        movementHexes.Clear();
+        attackHexes.Clear();
     }
 
     public void EnterBuildMode()
@@ -147,7 +184,7 @@ public class NewSelect : MonoBehaviour
 
     private void moveUnit(GameObject tile, GameObject unit)
     {
-        if (_selectedHexes.Contains(tile) && unit.GetComponent<Unit>().player.isCurrentPlayer)
+        if (movementHexes.Contains(tile) && unit.GetComponent<Unit>().player.isCurrentPlayer)
         {
             Deselect();
 

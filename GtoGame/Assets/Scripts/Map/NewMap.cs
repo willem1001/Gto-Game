@@ -46,6 +46,9 @@ public class NewMap : MonoBehaviour
 	            {
 	                hex123.GetComponent<Renderer>().material.color = Color.yellow;
 	            }
+
+                hexInstance.GetComponent<Tile>().setBase();
+
 	        }
 	    }
 	}

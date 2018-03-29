@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using Assets.Scripts.Map;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class NewMap : MonoBehaviour
     private readonly float _xOffset = Mathf.Sqrt(3);
     private readonly float _zOffset  = 1.5f;
     private readonly List<GameObject> _hexList = new List<GameObject>();
+
 
     private int _xCoordinateOffset;
 
@@ -62,6 +64,11 @@ public class NewMap : MonoBehaviour
     {
         return Random.Range(0f, .5f);
         
+    }
+
+    float getWidth()
+    {
+        return width;
     }
 
     

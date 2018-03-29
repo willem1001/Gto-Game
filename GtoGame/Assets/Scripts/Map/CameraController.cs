@@ -12,9 +12,21 @@ namespace Assets.Scripts.Map
 
         public float MinY =0f;
         public float MaxY=40f;
+        public GameObject MapGameObject;
+        private float startWidth;
+        
+
+        public void start()
+        {
+            startWidth = MapGameObject.GetComponent<NewMap>().width;
+            PanLimit.y = startWidth*2;
+            PanLimit.x = startWidth*2;
+        }
         // Update is called once per frame
         public void Update()
         {
+            PanLimit.y = MapGameObject.GetComponent<NewMap>().width*1.5f;
+            PanLimit.x = MapGameObject.GetComponent<NewMap>().height;
             Vector3 position = transform.position;
             if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - PanBorderThickness)
             {

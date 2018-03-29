@@ -8,6 +8,8 @@ public class Unit : MonoBehaviour
     public Player player;
     public float range = 2;
     public float rangeLeft;
+    public int maxHealth;
+    public int currentHealth;
     
 
    

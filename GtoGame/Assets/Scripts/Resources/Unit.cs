@@ -12,8 +12,8 @@ public class Unit : MonoBehaviour
     public float rangeLeft;
     public float attackRange;
 
-    public int maxHealth=100;
-    public int currentHealth=100;
+    public float maxHealth;
+    public float currentHealth;
     public int attackDamage;
     
     
@@ -24,6 +24,7 @@ public class Unit : MonoBehaviour
     {
         ResetMove();
         attackRange += 1;
+        currentHealth = maxHealth;
     }
 
     public void Render(Player player)
@@ -54,12 +55,18 @@ public class Unit : MonoBehaviour
     public void Damaged(int damage)
     {
         currentHealth -= damage;
-        transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = .5f;
+        transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = currentHealth/maxHealth;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
     }
 
     public void Die()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 
     public int Attack()

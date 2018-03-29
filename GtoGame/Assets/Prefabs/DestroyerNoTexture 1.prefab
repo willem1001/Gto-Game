@@ -205,6 +205,10 @@ MonoBehaviour:
   player: {fileID: 0}
   range: 2
   rangeLeft: 0
+  attackRange: 3
+  maxHealth: 100
+  currentHealth: 0
+  attackDamage: 10
 --- !u!114 &114721611370895948
 MonoBehaviour:
   m_ObjectHideFlags: 1

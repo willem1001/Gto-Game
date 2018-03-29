@@ -61,7 +61,7 @@ public class NewSelect : MonoBehaviour
             }
             else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1)
             {
-               attackUnit(tile, _selectedUnit);
+               AttackUnit(tile, _selectedUnit);
             }
         }
 
@@ -206,8 +206,14 @@ public class NewSelect : MonoBehaviour
         }
     }
 
-    private void attackUnit(GameObject tile, GameObject unit)
-    { 
-        
+    private void AttackUnit(GameObject tile, GameObject unit)
+    {
+        if (attackHexes.Contains(tile) && unit.GetComponent<Unit>().player.isCurrentPlayer &&
+            !tile.GetComponentInChildren<Unit>().player.isCurrentPlayer)
+        {
+            Unit attackedUnit = tile.GetComponentInChildren<Unit>();
+
+            attackedUnit.Damaged(unit.GetComponent<Unit>().Attack());
+        }
     }
 }

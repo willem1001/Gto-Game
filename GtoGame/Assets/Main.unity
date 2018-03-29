@@ -412,7 +412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 147038003}
-  _selectedHexes: []
   baseColor: {fileID: 2100000, guid: 1aac642bf51d6cf42a66d88f1bba7cd2, type: 2}
   Factory: {fileID: 503078947}
 --- !u!114 &339456530
@@ -645,7 +644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a98beec604bb9419fe3281c15ba410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Unit: {fileID: 1109381200180776, guid: 908bb9616f6ae3a46a8ba4e899579667, type: 2}
+  Unit: {fileID: 1450946746849944, guid: 0c2b2d622f85cdb48b8b17458532280a, type: 2}
   Costs:
   - {fileID: 503078948}
   TurnManager: {fileID: 452872321}
@@ -931,7 +930,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 147038003}
-  _selectedHexes: []
   baseColor: {fileID: 2100000, guid: 1aac642bf51d6cf42a66d88f1bba7cd2, type: 2}
   Factory: {fileID: 634062862}
 --- !u!114 &659060863

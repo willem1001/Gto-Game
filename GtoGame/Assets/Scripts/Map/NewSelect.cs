@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Map;
@@ -158,16 +159,8 @@ public class NewSelect : MonoBehaviour
             
             
             Vector3 difference = startPos - endPos;
-
-            if (difference.x == 1 || difference.y == 1 || difference.z == 1)
-            {
-                unit.GetComponent<Unit>().Move(1);
-            }
-            else
-            {
-                unit.GetComponent<Unit>().Move(2);
-            }
-
+            var move = (int) (Math.Abs(difference.x) + Math.Abs(difference.y) + Math.Abs(difference.z)) / 2;
+            unit.GetComponent<Unit>().Move(move);
             unit.transform.parent = tile.transform;
             unit.transform.position = tile.transform.position;
         }

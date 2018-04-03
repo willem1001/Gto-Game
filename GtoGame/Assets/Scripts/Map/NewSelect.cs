@@ -26,7 +26,6 @@ public class NewSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         RaycastHit raycast;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
         {
@@ -57,7 +56,7 @@ public class NewSelect : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 0)
             {
-                moveUnit(tile, _selectedUnit);
+                MoveUnit(tile, _selectedUnit);
             }
             else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1 && _selectedUnit.GetComponent<Unit>().canAttack)
             {
@@ -81,8 +80,6 @@ public class NewSelect : MonoBehaviour
         {
             attackHexes = TileFinder(baseHex, (int) unitScript.attackRange);
         }
-        Debug.Log(attackHexes.Count);
-
 
         foreach (var hex in movementHexes)
         {
@@ -158,7 +155,7 @@ public class NewSelect : MonoBehaviour
         List<Vector3> points = new List<Vector3>();
         Vector3 step = (start - end) / tile;
 
-        for (int i = 1; i < tile; i++)
+        for (var i = 1; i < tile; i++)
         {
             points.Add(end + step * i);
         }
@@ -185,7 +182,7 @@ public class NewSelect : MonoBehaviour
         _inBuildMode = true;
     }
 
-    private void moveUnit(GameObject tile, GameObject unit)
+    private void MoveUnit(GameObject tile, GameObject unit)
     {
         if (movementHexes.Contains(tile) && unit.GetComponent<Unit>().player.isCurrentPlayer)
         {

@@ -59,7 +59,7 @@ public class NewSelect : MonoBehaviour
             {
                 moveUnit(tile, _selectedUnit);
             }
-            else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1)
+            else if(Input.GetMouseButtonDown(1) && _selectedUnit != null && tile.transform.childCount == 1 && _selectedUnit.GetComponent<Unit>().canAttack)
             {
                AttackUnit(tile, _selectedUnit);
             }
@@ -77,7 +77,7 @@ public class NewSelect : MonoBehaviour
 
 
          movementHexes = TileFinder(baseHex, (int)unitScript.rangeLeft);
-        if (fromActivePlayer)
+        if (fromActivePlayer && unitScript.canAttack)
         {
             attackHexes = TileFinder(baseHex, (int) unitScript.attackRange);
         }
@@ -212,8 +212,9 @@ public class NewSelect : MonoBehaviour
             !tile.GetComponentInChildren<Unit>().player.isCurrentPlayer)
         {
             Unit attackedUnit = tile.GetComponentInChildren<Unit>();
-
             attackedUnit.Damaged(unit.GetComponent<Unit>().Attack());
+
+            FindTiles(unit.transform.parent.gameObject, unit);
         }
     }
 }

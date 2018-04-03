@@ -15,6 +15,7 @@ public class Unit : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public int attackDamage;
+    public bool canAttack;
     
     
 
@@ -25,6 +26,7 @@ public class Unit : MonoBehaviour
         ResetMove();
         attackRange += 1;
         currentHealth = maxHealth;
+        canAttack = true;
     }
 
     public void Render(Player player)
@@ -41,6 +43,7 @@ public class Unit : MonoBehaviour
     public void ResetMove()
     {
         rangeLeft = range + 1;
+        canAttack = true;
     }
 
     public void TurnToTile(GameObject tileEnd)
@@ -64,13 +67,14 @@ public class Unit : MonoBehaviour
 
     }
 
-    public void Die()
+    private void Die()
     {
         Destroy(this.gameObject);
     }
 
     public int Attack()
     {
+        canAttack = false;
         return attackDamage;
     }
 }

@@ -12,7 +12,6 @@ namespace Assets.Scripts.Map
         private List<GameObject> HexList = new List<GameObject>();
         private float XHexDifference = (Mathf.Sqrt(3)/2);
         private const float ZHexDifference = 1.5f;
-        private readonly Random _random = new Random();
         private GameObject startHex;
 
         // Use this for initialization

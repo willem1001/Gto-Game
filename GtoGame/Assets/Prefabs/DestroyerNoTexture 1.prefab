@@ -209,6 +209,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   attackDamage: 10
+  canAttack: 0
 --- !u!114 &114721611370895948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e06ac1c90cca544b71cbd5d1dcb1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 20722995862160490, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+  MainCamera: {fileID: 1814208893950436, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
 --- !u!222 &222608569728276034
 CanvasRenderer:
   m_ObjectHideFlags: 1

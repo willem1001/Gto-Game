@@ -217,6 +217,9 @@ MonoBehaviour:
   hex: {fileID: 1449432507545830, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
   width: 20
   height: 20
+  black: 0
+  green: 0
+  TurnManager: {fileID: 452872321}
 --- !u!4 &147038005
 Transform:
   m_ObjectHideFlags: 0
@@ -237,59 +240,39 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalPosition.y
       value: 17
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0.8660254
       objectReference: {fileID: 0}
-    - target: {fileID: 4757595466887076, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
+    - target: {fileID: 4532641983421784, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114696732776110430, guid: 21abda6043ddb984e83d760d381bb3c2,
-        type: 2}
-      propertyPath: MinY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20722995862160490, guid: 21abda6043ddb984e83d760d381bb3c2,
-        type: 2}
-      propertyPath: field of view
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 20722995862160490, guid: 21abda6043ddb984e83d760d381bb3c2,
-        type: 2}
-      propertyPath: m_Depth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114696732776110430, guid: 21abda6043ddb984e83d760d381bb3c2,
-        type: 2}
-      propertyPath: PanLimit.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114696732776110430, guid: 21abda6043ddb984e83d760d381bb3c2,
+    - target: {fileID: 114422927519670140, guid: 21abda6043ddb984e83d760d381bb3c2,
         type: 2}
       propertyPath: MapGameObject
       value: 
@@ -412,7 +395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 147038003}
-  baseColor: {fileID: 2100000, guid: 1aac642bf51d6cf42a66d88f1bba7cd2, type: 2}
   Factory: {fileID: 503078947}
 --- !u!114 &339456530
 MonoBehaviour:
@@ -566,7 +548,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Next Turn
 --- !u!222 &424718156
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -930,7 +912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 147038003}
-  baseColor: {fileID: 2100000, guid: 1aac642bf51d6cf42a66d88f1bba7cd2, type: 2}
   Factory: {fileID: 634062862}
 --- !u!114 &659060863
 MonoBehaviour:
@@ -1158,7 +1139,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Next Turn
+
+'
 --- !u!222 &699929789
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1549,6 +1532,7 @@ MonoBehaviour:
   color: {r: 0.9558824, g: 0.11245675, b: 0.11245675, a: 0}
   isCurrentPlayer: 0
   UnitList: []
+  tileColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1652027546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1932,6 +1916,7 @@ MonoBehaviour:
   color: {r: 0.38584277, g: 0.11245675, b: 0.9558824, a: 0}
   isCurrentPlayer: 0
   UnitList: []
+  tileColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!4 &1962135907
 Transform:
   m_ObjectHideFlags: 0

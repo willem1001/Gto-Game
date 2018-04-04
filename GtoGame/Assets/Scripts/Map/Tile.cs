@@ -9,6 +9,7 @@ namespace Assets.Scripts.Map
         public Vector3 position;
         public Color BaseColor;
         public Material BaseMaterial;
+        public Player currentOwner;
 
         public void setBase()
         {
@@ -16,10 +17,19 @@ namespace Assets.Scripts.Map
             this.BaseMaterial = GetComponent<Renderer>().material;
         }
 
+        public void ChangeOwner(Player player)
+        {
+
+            currentOwner = player;
+            var newColor = player.tileColor; 
+            this.gameObject.GetComponent<Renderer>().material.color = newColor;
+            setBase();
+        }
+
         public void resetToBase()
         {
-            GetComponent<Renderer>().material = BaseMaterial;
-            GetComponent<Renderer>().material.color = BaseColor;
+           gameObject.GetComponent<Renderer>().material = BaseMaterial;
+           gameObject.GetComponent<Renderer>().material.color = BaseColor;
         }
 
         public bool HasChild()
@@ -33,10 +43,10 @@ namespace Assets.Scripts.Map
             return false;
         }
 
-        public void AddChild(GameObject parentObject, GameObject childObject)
+        public void AddChild(GameObject childObject)
         {
-            childObject.transform.parent = parentObject.transform;
-            childObject.transform.position = parentObject.transform.position;
+            childObject.transform.parent = this.gameObject.transform;
+            childObject.transform.position = this.gameObject.transform.position;
         }
 
         public void Setposition(Vector3 position)

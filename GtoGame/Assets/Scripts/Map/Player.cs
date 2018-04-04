@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Color color;
     public bool isCurrentPlayer;
     public List<GameObject> UnitList = new List<GameObject>();
+    public Color tileColor;
 
     public void StartTurn()
     {

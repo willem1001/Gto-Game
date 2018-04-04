@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    private Renderer renderer;
+    private Renderer _renderer;
     public Player player;
     public float range;
     public float rangeLeft;
@@ -32,8 +32,8 @@ public class Unit : MonoBehaviour
     public void Render(Player player)
     {
         this.player = player;
-        renderer = GetComponent<Renderer>();
-        renderer.material.color = player.color;
+        _renderer = GetComponent<Renderer>();
+        _renderer.material.color = player.color;
     }
 
     public void Move(int moved)
@@ -74,6 +74,12 @@ public class Unit : MonoBehaviour
 
     public int Attack()
     {
+        if (this.gameObject.GetComponentInParent<Tile>().currentOwner == player)
+        {
+            canAttack = false;
+            return attackDamage + 10;
+        }
+
         canAttack = false;
         return attackDamage;
     }

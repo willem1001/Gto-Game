@@ -11,7 +11,6 @@ public class NewSelect : MonoBehaviour
     public GameObject map;
     List<GameObject> movementHexes = new List<GameObject>();
     List<GameObject> attackHexes = new List<GameObject>();
-    public Material baseColor;
     public UnitFactory Factory;
     private bool _inBuildMode;
     private GameObject _selectedUnit;
@@ -63,14 +62,11 @@ public class NewSelect : MonoBehaviour
                AttackUnit(tile, _selectedUnit);
             }
         }
-
-
     }
 
 
     private void FindTiles(GameObject baseHex, bool fromActivePlayer)
     {
-
         Deselect();
         Unit unitScript = baseHex.GetComponentInChildren<Unit>();
 
@@ -97,14 +93,12 @@ public class NewSelect : MonoBehaviour
                 hex.GetComponent<Renderer>().material.color = Color.red;
             }
         }
-        
-
     }
 
     private List<GameObject> TileFinder(GameObject baseHex, int range)
     {
         Vector3 basePos = baseHex.GetComponent<Tile>().position;
-        List<GameObject> hexList = map.GetComponent<NewMap>().getHexes();
+        List<GameObject> hexList = map.GetComponent<NewMap>().GetHexes();
         List<Vector3> points = new List<Vector3>();
         List<GameObject> foundHexes = new List<GameObject>();
 
@@ -198,8 +192,12 @@ public class NewSelect : MonoBehaviour
             Vector3 difference = startPos - endPos;
             var move = (int) (Math.Abs(difference.x) + Math.Abs(difference.y) + Math.Abs(difference.z)) / 2;
             unit.GetComponent<Unit>().Move(move);
-            unit.transform.parent = tile.transform;
-            unit.transform.position = tile.transform.position;
+            tile.GetComponent<Tile>().AddChild(unit);
+
+            if (tile.GetComponent<Tile>().currentOwner != unit.GetComponent<Unit>().player)
+            {
+                tile.GetComponent<Tile>().ChangeOwner(unit.GetComponent<Unit>().player);
+            }
         }
     }
 
@@ -210,8 +208,7 @@ public class NewSelect : MonoBehaviour
         {
             Unit attackedUnit = tile.GetComponentInChildren<Unit>();
             attackedUnit.Damaged(unit.GetComponent<Unit>().Attack());
-
-            FindTiles(unit.transform.parent.gameObject, unit);
+            FindTiles(unit.transform.parent.gameObject, unit);           
         }
     }
 }

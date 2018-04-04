@@ -3,11 +3,11 @@ using System.Collections;
 
 public class FaceCamera : MonoBehaviour
 {
-    public Camera camera;
+    public GameObject MainCamera;
 
     public void Update()
     {
-        transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward,
-            camera.transform.rotation * Vector3.up);
+        transform.LookAt(transform.position + MainCamera.transform.rotation * Vector3.forward,
+            MainCamera.transform.rotation * Vector3.up);
     }
 }

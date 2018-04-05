@@ -143,7 +143,6 @@ public class NewSelect : MonoBehaviour
     public void EnterBuildMode()
     {
         _inBuildMode = true;
-
         foreach (var spawnHex in this.GetComponentInParent<Player>().SpawnHexes)
         {
             spawnHex.GetComponent<Renderer>().material.color = Color.blue;
@@ -153,7 +152,7 @@ public class NewSelect : MonoBehaviour
     private void ExitBuildMode()
     {
         _inBuildMode = false;
-
+        var p = this.transform.parent;
         foreach (var spawnHex in this.GetComponentInParent<Player>().SpawnHexes)
         {
             spawnHex.GetComponent<Tile>().ResetToBase();

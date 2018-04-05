@@ -35,7 +35,7 @@ namespace Assets.Scripts.Map
                 startWidthy = MapGameObject.GetComponentInChildren<NewMap>().height;
                 centery = startWidthy / 2;
                 PanLimitMin.y = centery-startWidthy;
-                PanLimitMax.y = centery;
+                PanLimitMax.y = centery*2f;
             }
             
             

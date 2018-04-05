@@ -17,10 +17,6 @@ public class Unit : MonoBehaviour
     public int attackDamage;
     public bool canAttack;
     
-    
-
-   
-
     void Start()
     {
         ResetMove();
@@ -31,9 +27,21 @@ public class Unit : MonoBehaviour
 
     public void Render(Player player)
     {
+        if (this.gameObject.transform.childCount > 0)
+        {
+            foreach (var renderer in gameObject.transform.GetComponentsInChildren<Renderer>())
+            {
+                renderer.material.color = player.color;
+            }
+        }
+        else
+        {
+            _renderer = GetComponent<Renderer>();
+            _renderer.material.color = player.color;
+        }
+
         this.player = player;
-        _renderer = GetComponent<Renderer>();
-        _renderer.material.color = player.color;
+
     }
 
     public void Move(int moved)

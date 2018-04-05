@@ -11,7 +11,9 @@ public class Player : MonoBehaviour
     public List<GameObject> UnitList = new List<GameObject>();
     public List<newFactory> FactoryList = new List<newFactory>();
     public List<GameObject> SpawnHexes = new List<GameObject>();
+    public List<GameObject> OwnedTiles = new List<GameObject>();
     public Color tileColor;
+    public int tilesToWin;
 
     public void StartTurn()
     {
@@ -32,6 +34,11 @@ public class Player : MonoBehaviour
 
         gameObject.SetActive(false);
         isCurrentPlayer = false;
+    }
+
+    public bool haswon()
+    {
+        return OwnedTiles.Count >= tilesToWin;
     }
 
 }

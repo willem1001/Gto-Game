@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Assets.Scripts;
 using UnityEngine;
 
@@ -20,6 +21,11 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
+        if (GetCurrentPlayer().haswon())
+        {
+            GameOver();
+        }
+
         GetCurrentPlayer().GetComponentInChildren<NewSelect>().Deselect();
         GetCurrentPlayer().EndTurn();
         _currentPlayer++;
@@ -30,8 +36,13 @@ public class TurnManager : MonoBehaviour
        GetCurrentPlayer().StartTurn();
     }
 
-    public Player GetCurrentPlayer()
+    private Player GetCurrentPlayer()
     {
         return _players[_currentPlayer];
+    }
+
+    private void GameOver()
+    {
+        
     }
 }

@@ -10,15 +10,14 @@ public class NewMap : MonoBehaviour
     public GameObject hex;
     public float width;
     public float height;
-    public int black;
-    public int green;
     public TurnManager TurnManager;
     private Player player1;
     private Player player2;
     private readonly float _xOffset = Mathf.Sqrt(3);
     private readonly float _zOffset = 1.5f;
     private readonly List<GameObject> _hexList = new List<GameObject>();
-    
+
+
 
 
     private int _xCoordinateOffset;
@@ -61,45 +60,52 @@ public class NewMap : MonoBehaviour
         float chance = 0;
         var change = 100 / (total - 4f * width);
         var current = 1;
-        var standardGreen = 0;
-        var standardBlack = 0;
 
 
         foreach (var instance in _hexList)
         {
             if (current <= 2 * width)
             {
-                instance.GetComponent<Tile>().ChangeOwner(player1);
+                instance.GetComponent<Tile>().isSpawn = true;
+                instance.GetComponent<Tile>().setOwner(player1);
                 player1.SpawnHexes.Add(instance);
-                standardBlack++;
             }
-            else if (current >= total - 2 * width)
+            else if (current > total - 2 * width)
             {
-                instance.GetComponent<Tile>().ChangeOwner(player2);
+                instance.GetComponent<Tile>().isSpawn = true;
+                instance.GetComponent<Tile>().setOwner(player2);
                 player2.SpawnHexes.Add(instance);
-                standardGreen++;
             }
             else
             {
-                if (green >= halfwayPoint)
-                {      
-                    instance.GetComponent<Tile>().ChangeOwner(player1);
-                    black++;
-                }
-                else if (black >= halfwayPoint)
+                if (player2.OwnedTiles.Count >= halfwayPoint)
                 {
-                    instance.GetComponent<Tile>().ChangeOwner(player2);
-                    green++;
+                    instance.GetComponent<Tile>().setOwner(player1);
                 }
-                else if (random(0, 100) > chance)
+                else if (player1.OwnedTiles.Count >= halfwayPoint)
                 {
-                    instance.GetComponent<Tile>().ChangeOwner(player1);
-                    black++;
+                    instance.GetComponent<Tile>().setOwner(player2);
                 }
                 else
                 {
-                    instance.GetComponent<Tile>().ChangeOwner(player2);
-                    green++;
+                    var currentChance = chance;
+                    if (player1.OwnedTiles.Count > player2.OwnedTiles.Count)
+                    {
+                        currentChance -= 3;
+                    }
+                    else
+                    {
+                        currentChance += 3;
+                    }
+
+                    if (random(0, 100) >= currentChance)
+                    {
+                        instance.GetComponent<Tile>().setOwner(player1);
+                    }
+                    else
+                    {
+                        instance.GetComponent<Tile>().setOwner(player2);
+                    }
                 }
                 chance += change;
             }
@@ -109,22 +115,14 @@ public class NewMap : MonoBehaviour
         {
             instance.GetComponent<Tile>().setBase();
         }
-
-        green += standardGreen;
-        black += standardBlack;
+        player1.tilesToWin = (int)halfwayPoint;
+        player2.tilesToWin = (int)halfwayPoint;
     }
 
     public List<GameObject> GetHexes()
     {
         return _hexList;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     private float random(int start, int end)
     {

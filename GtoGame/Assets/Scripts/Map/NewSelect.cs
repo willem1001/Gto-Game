@@ -26,8 +26,8 @@ public class NewSelect : MonoBehaviour
     void Update()
     {
         if (!EventSystem.current.IsPointerOverGameObject())
-        { 
-        RaycastHit raycast;
+        {
+            RaycastHit raycast;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
             {
                 GameObject tile = raycast.transform.gameObject;
@@ -129,11 +129,11 @@ public class NewSelect : MonoBehaviour
     {
         foreach (var hex in movementHexes)
         {
-            hex.GetComponent<Tile>().resetToBase();
+            hex.GetComponent<Tile>().ResetToBase();
         }
         foreach (var hex in attackHexes)
         {
-            hex.GetComponent<Tile>().resetToBase();
+            hex.GetComponent<Tile>().ResetToBase();
         }
 
         movementHexes.Clear();
@@ -156,7 +156,7 @@ public class NewSelect : MonoBehaviour
 
         foreach (var spawnHex in this.GetComponentInParent<Player>().SpawnHexes)
         {
-            spawnHex.GetComponent<Tile>().resetToBase();
+            spawnHex.GetComponent<Tile>().ResetToBase();
         }
     }
 
@@ -191,7 +191,7 @@ public class NewSelect : MonoBehaviour
             unit.GetComponent<Unit>().Move(move);
             tile.GetComponent<Tile>().AddChild(unit);
 
-            if (tile.GetComponent<Tile>().currentOwner != unit.GetComponent<Unit>().player)
+            if (!tile.GetComponent<Tile>().isSpawn && tile.GetComponent<Tile>().currentOwner != unit.GetComponent<Unit>().player)
             {
                 tile.GetComponent<Tile>().ChangeOwner(unit.GetComponent<Unit>().player);
             }

@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 1449432507545830, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
-  width: 20
-  height: 20
+  width: 6
+  height: 6
   TurnManager: {fileID: 452872321}
 --- !u!4 &147038005
 Transform:
@@ -2787,6 +2787,72 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &2073514480
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989789888823678, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &2073514481 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1578196816516976, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 2073514480}
+--- !u!114 &2073514482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073514481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ab6fd9e85db11489df0b2fe1dc1ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  range: 2
+  rangeLeft: 0
+  attackRange: 3
+  maxHealth: 0
+  currentHealth: 100
+  attackDamage: 10
+  canAttack: 0
 --- !u!1 &2126649690
 GameObject:
   m_ObjectHideFlags: 0

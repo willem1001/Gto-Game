@@ -144,7 +144,7 @@ public class NewSelect : MonoBehaviour
     {
         _inBuildMode = true;
 
-        foreach (var spawnHex in this.GetComponentInParent<Player>().SpawnHexes)
+        foreach (var spawnHex in this.transform.root.GetComponent<Player>().SpawnHexes)
         {
             spawnHex.GetComponent<Renderer>().material.color = Color.blue;
         }
@@ -154,7 +154,7 @@ public class NewSelect : MonoBehaviour
     {
         _inBuildMode = false;
 
-        foreach (var spawnHex in this.GetComponentInParent<Player>().SpawnHexes)
+        foreach (var spawnHex in this.transform.root.GetComponent<Player>().SpawnHexes)
         {
             spawnHex.GetComponent<Tile>().ResetToBase();
         }
@@ -164,8 +164,8 @@ public class NewSelect : MonoBehaviour
     {
         Deselect();
         ExitBuildMode();
-
-        if (_selectedUnit.GetComponent<newFactory>() != null)
+        
+        if (_selectedUnit != null && _selectedUnit.GetComponent<newFactory>() != null)
         {
             _selectedUnit.GetComponent<newFactory>().OnDeselect();
         }

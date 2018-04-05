@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Map;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NewSelect : MonoBehaviour
 {
@@ -24,60 +25,64 @@ public class NewSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        { 
         RaycastHit raycast;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
-        {
-            GameObject tile = raycast.transform.gameObject;
-
-            if (tile.transform.childCount == 0)
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out raycast))
             {
-                if (Input.GetMouseButtonDown(0))
+                GameObject tile = raycast.transform.gameObject;
+
+                if (tile.transform.childCount == 0)
                 {
-                    if (_inBuildMode && this.GetComponentInParent<Player>().SpawnHexes.Contains(tile))
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        Factory.SpawnFactory(tile);
-                        ExitBuildMode();
-                    }
-                    else if(_selectedUnit != null)
-                    {
-                        if (_selectedUnit.GetComponent<newFactory>() != null)
+                        if (_inBuildMode && this.GetComponentInParent<Player>().SpawnHexes.Contains(tile))
                         {
-                            _selectedUnit.GetComponent<newFactory>().OnDeselect();
+                            Factory.SpawnFactory(tile);
+                            ExitBuildMode();
+                        }
+                        else if (_selectedUnit != null)
+                        {
+                            if (_selectedUnit.GetComponent<newFactory>() != null)
+                            {
+                                _selectedUnit.GetComponent<newFactory>().OnDeselect();
+                            }
+
+                            Deselect();
+                            _selectedUnit = null;
+                        }
+                    }
+                    else if (Input.GetMouseButtonDown(1))
+                    {
+                        if (_selectedUnit != null && _selectedUnit.GetComponent<Unit>() != null)
+                        {
+                            MoveUnit(tile, _selectedUnit);
+                        }
+                    }
+                }
+                else if (tile.transform.childCount > 0)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        _selectedUnit = tile.transform.GetChild(0).gameObject;
+
+                        if (_selectedUnit.GetComponent<Unit>() != null)
+                        {
+                            FindTiles(tile, _selectedUnit.GetComponent<Unit>().player.isCurrentPlayer);
+                        }
+                        else if (_selectedUnit.GetComponent<newFactory>() != null &&
+                                 _selectedUnit.GetComponent<newFactory>().Player.isCurrentPlayer)
+                        {
+                            _selectedUnit.GetComponent<newFactory>().OnSelect();
                         }
 
-                        Deselect();
-                        _selectedUnit = null;
                     }
-                }
-                else if(Input.GetMouseButtonDown(1))
-                {
-                    if (_selectedUnit != null && _selectedUnit.GetComponent<Unit>() != null)
+                    else if (Input.GetMouseButtonDown(1))
                     {
-                        MoveUnit(tile, _selectedUnit);
-                    }
-                }
-            }
-            else if(tile.transform.childCount > 0)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    _selectedUnit = tile.transform.GetChild(0).gameObject;
-
-                    if (_selectedUnit.GetComponent<Unit>() != null)
-                    {
-                        FindTiles(tile, _selectedUnit.GetComponent<Unit>().player.isCurrentPlayer);
-                    }
-                    else if(_selectedUnit.GetComponent<newFactory>() != null && _selectedUnit.GetComponent<newFactory>().Player.isCurrentPlayer)
-                    {
-                        _selectedUnit.GetComponent<newFactory>().OnSelect();
-                    }
-
-                }
-                else if(Input.GetMouseButtonDown(1))
-                {
-                    if (tile.GetComponentInChildren<Unit>() != null)
-                    {
-                        AttackUnit(tile, _selectedUnit);
+                        if (tile.GetComponentInChildren<Unit>() != null)
+                        {
+                            AttackUnit(tile, _selectedUnit);
+                        }
                     }
                 }
             }
@@ -153,6 +158,19 @@ public class NewSelect : MonoBehaviour
         {
             spawnHex.GetComponent<Tile>().resetToBase();
         }
+    }
+
+    public void TurnEnded()
+    {
+        Deselect();
+        ExitBuildMode();
+
+        if (_selectedUnit.GetComponent<newFactory>() != null)
+        {
+            _selectedUnit.GetComponent<newFactory>().OnDeselect();
+        }
+
+        _selectedUnit = null;
     }
 
     private void MoveUnit(GameObject tile, GameObject unit)

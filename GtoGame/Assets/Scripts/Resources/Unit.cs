@@ -60,6 +60,9 @@ public class Unit : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(-90, 0, rotationZ - 135));
 
+        //transform.LookAt(tileEnd.GetComponent<Tile>().position);
+
+
 
     }
 

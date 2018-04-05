@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4989789888823678}
   - component: {fileID: 33164365440226962}
   - component: {fileID: 23779931544438670}
+  - component: {fileID: 114949948405118170}
   m_Layer: 0
   m_Name: StarDestroyer
   m_TagString: Untagged
@@ -82,3 +83,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578196816516976}
   m_Mesh: {fileID: 4300000, guid: 8df4ddb673aa345478f5ae235a24dec6, type: 3}
+--- !u!114 &114949948405118170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578196816516976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ab6fd9e85db11489df0b2fe1dc1ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  range: 2
+  rangeLeft: 0
+  attackRange: 3
+  maxHealth: 100
+  currentHealth: 0
+  attackDamage: 10
+  canAttack: 0

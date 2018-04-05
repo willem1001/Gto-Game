@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
     public float currentHealth;
     public int attackDamage;
     public bool canAttack;
+    public float groundOffset;
     
     void Start()
     {
@@ -58,12 +59,7 @@ public class Unit : MonoBehaviour
     {
         Vector3 difference = tileEnd.GetComponent<Tile>().position - transform.parent.GetComponent<Tile>().position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(-90, 0, rotationZ - 135));
-
-        //transform.LookAt(tileEnd.GetComponent<Tile>().position);
-
-
-
+        transform.rotation = Quaternion.Euler(new Vector3(0, rotationZ - 135, 0));
     }
 
     public void Damaged(int damage)

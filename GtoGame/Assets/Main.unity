@@ -931,7 +931,7 @@ MonoBehaviour:
   Factory: {fileID: 1247802717452928, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
   Costs:
   - {fileID: 483210853}
-  Unit: {fileID: 1145602856623608, guid: 274a4dda645b61c4bba9d8d703d47b08, type: 2}
+  Unit: {fileID: 1983437190651408, guid: cf61a18295a73f84f96022fb9af13929, type: 2}
 --- !u!114 &483210853
 MonoBehaviour:
   m_ObjectHideFlags: 0

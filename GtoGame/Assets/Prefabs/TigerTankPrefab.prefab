@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1578196816516976}
+  m_RootGameObject: {fileID: 1983437190651408}
   m_IsPrefabParent: 1
---- !u!1 &1578196816516976
+--- !u!1 &1983437190651408
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4989789888823678}
-  - component: {fileID: 33164365440226962}
-  - component: {fileID: 23779931544438670}
-  - component: {fileID: 114949948405118170}
+  - component: {fileID: 4422346328238034}
+  - component: {fileID: 33236472245329886}
+  - component: {fileID: 23356056123730820}
+  - component: {fileID: 114056049035696178}
   m_Layer: 0
-  m_Name: StarDestroyer
+  m_Name: TigerTankPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4989789888823678
+--- !u!4 &4422346328238034
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578196816516976}
+  m_GameObject: {fileID: 1983437190651408}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 99.99997, z: 99.99997}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &23779931544438670
+--- !u!23 &23356056123730820
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578196816516976}
+  m_GameObject: {fileID: 1983437190651408}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8df4ddb673aa345478f5ae235a24dec6, type: 3}
+  - {fileID: 2100000, guid: fc4bc42b1ad15c046a4e0cb38d31402e, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,19 +76,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33164365440226962
+--- !u!33 &33236472245329886
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578196816516976}
-  m_Mesh: {fileID: 4300000, guid: 8df4ddb673aa345478f5ae235a24dec6, type: 3}
---- !u!114 &114949948405118170
+  m_GameObject: {fileID: 1983437190651408}
+  m_Mesh: {fileID: 4300000, guid: fc4bc42b1ad15c046a4e0cb38d31402e, type: 3}
+--- !u!114 &114056049035696178
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1578196816516976}
+  m_GameObject: {fileID: 1983437190651408}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20ab6fd9e85db11489df0b2fe1dc1ea0, type: 3}
@@ -102,4 +102,4 @@ MonoBehaviour:
   currentHealth: 0
   attackDamage: 10
   canAttack: 0
-  groundOffset: 0.3
+  groundOffset: 0.12

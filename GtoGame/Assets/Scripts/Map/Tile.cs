@@ -63,7 +63,7 @@ namespace Assets.Scripts.Map
         public void AddChild(GameObject childObject)
         {
             childObject.transform.parent = this.gameObject.transform;
-            childObject.transform.position = this.gameObject.transform.position;
+            childObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + childObject.GetComponent<Unit>().groundOffset, this.gameObject.transform.position.z );
         }
 
         public void Setposition(Vector3 position)

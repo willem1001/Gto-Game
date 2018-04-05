@@ -85,7 +85,7 @@ namespace Assets.Scripts.Map
             }
 
             List<GameObject> foundhexes = new List<GameObject>();
-            List<GameObject> hexes = this.transform.parent.GetComponent<Map>().GetHexes();
+            List<GameObject> hexes = this.transform.parent.GetComponent<NewMap>().GetHexes();
 
             foreach (var point in points)
             {

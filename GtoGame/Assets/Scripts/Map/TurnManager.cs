@@ -43,6 +43,6 @@ public class TurnManager : MonoBehaviour
 
     private void GameOver()
     {
-        
+        this.gameObject.GetComponentInChildren<Canvas>().enabled = true;
     }
 }

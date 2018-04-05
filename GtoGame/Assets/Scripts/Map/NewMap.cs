@@ -60,6 +60,7 @@ public class NewMap : MonoBehaviour
         float chance = 0;
         var change = 100 / (total - 4f * width);
         var current = 1;
+        var tilesToWin = total - 4 * width;
 
 
         foreach (var instance in _hexList)
@@ -115,8 +116,8 @@ public class NewMap : MonoBehaviour
         {
             instance.GetComponent<Tile>().setBase();
         }
-        player1.tilesToWin = (int)halfwayPoint;
-        player2.tilesToWin = (int)halfwayPoint;
+        player1.tilesToWin = (int)tilesToWin;
+        player2.tilesToWin = (int)tilesToWin;
     }
 
     public List<GameObject> GetHexes()

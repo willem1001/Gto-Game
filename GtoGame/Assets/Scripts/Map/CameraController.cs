@@ -7,26 +7,39 @@ namespace Assets.Scripts.Map
         public float PanSpeed = 20f;
         public float PanBorderThickness = 10f;
 
-        public Vector2 PanLimit;
+        public Vector2 PanLimitMax;
+        public Vector2 PanLimitMin;
         public float ScrollSpeed = 20f;
 
         public float MinY =0f;
         public float MaxY=40f;
         public GameObject MapGameObject;
-        private float startWidth;
+        float startWidthx;
+        float centerx;
+        float startWidthy;
+        float centery;
         
 
         public void start()
         {
-            startWidth = MapGameObject.GetComponent<NewMap>().width;
-            PanLimit.y = startWidth*2;
-            PanLimit.x = startWidth*2;
         }
         // Update is called once per frame
         public void Update()
         {
-            PanLimit.y = MapGameObject.GetComponent<NewMap>().width*1.5f;
-            PanLimit.x = MapGameObject.GetComponent<NewMap>().height;
+            if (startWidthx.Equals(0)||startWidthy.Equals(0))
+            {
+                startWidthx = MapGameObject.GetComponentInChildren<NewMap>().width;
+                centerx = startWidthx / 2;
+                PanLimitMin.x = centerx;
+                PanLimitMax.x = centerx + startWidthx;
+                startWidthy = MapGameObject.GetComponentInChildren<NewMap>().height;
+                centery = startWidthy / 2;
+                PanLimitMin.y = centery-startWidthy;
+                PanLimitMax.y = centery;
+            }
+            
+            
+            
             Vector3 position = transform.position;
             if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - PanBorderThickness)
             {
@@ -47,8 +60,8 @@ namespace Assets.Scripts.Map
                 position.x -= PanSpeed * Time.deltaTime;
             }
 
-            position.x = Mathf.Clamp(position.x, -PanLimit.x, PanLimit.x);
-            position.z = Mathf.Clamp(position.z, -PanLimit.y, PanLimit.y);
+            position.x = Mathf.Clamp(position.x, PanLimitMin.x, PanLimitMax.x);
+            position.z = Mathf.Clamp(position.z, PanLimitMin.y, PanLimitMax.y);
             position.y = Mathf.Clamp(position.y, MinY, MaxY);
 
             var scroll = Input.GetAxis("Mouse ScrollWheel");

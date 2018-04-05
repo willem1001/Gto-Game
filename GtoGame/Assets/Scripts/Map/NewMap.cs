@@ -18,6 +18,7 @@ public class NewMap : MonoBehaviour
     private readonly float _xOffset = Mathf.Sqrt(3);
     private readonly float _zOffset = 1.5f;
     private readonly List<GameObject> _hexList = new List<GameObject>();
+    
 
 
     private int _xCoordinateOffset;
@@ -69,11 +70,13 @@ public class NewMap : MonoBehaviour
             if (current <= 2 * width)
             {
                 instance.GetComponent<Tile>().ChangeOwner(player1);
+                player1.SpawnHexes.Add(instance);
                 standardBlack++;
             }
             else if (current >= total - 2 * width)
             {
                 instance.GetComponent<Tile>().ChangeOwner(player2);
+                player2.SpawnHexes.Add(instance);
                 standardGreen++;
             }
             else

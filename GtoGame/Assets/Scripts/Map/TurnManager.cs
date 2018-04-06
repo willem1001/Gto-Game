@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Assets.Scripts;
 using Assets.Scripts.Map;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -46,6 +47,12 @@ public class TurnManager : MonoBehaviour
 
     private void GameOver()
     {
-        this.gameObject.GetComponentInChildren<Canvas>().enabled = true;
+        Color wonColor = GetCurrentPlayer().color;
+        wonColor.a = 1f;
+        Canvas canvas = this.gameObject.GetComponentInChildren<Canvas>();
+        canvas.GetComponentInChildren<Text>().text = GetCurrentPlayer().playerColor +" has won";
+        canvas.GetComponentInChildren<Text>().color = wonColor;
+        canvas.enabled = true;
+        
     }
 }

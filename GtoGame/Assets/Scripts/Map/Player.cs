@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public List<GameObject> OwnedTiles = new List<GameObject>();
     public Color tileColor;
     public int tilesToWin;
+    public string playerColor  ;
 
   
 

@@ -642,8 +642,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 90, y: 0}
+  m_SizeDelta: {x: 358, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422380128
 MonoBehaviour:
@@ -1913,6 +1913,7 @@ MonoBehaviour:
   OwnedTiles: []
   tileColor: {r: 1, g: 1, b: 1, a: 0}
   tilesToWin: 0
+  playerColor: Blue
 --- !u!4 &1401388819
 Transform:
   m_ObjectHideFlags: 0
@@ -2118,6 +2119,7 @@ MonoBehaviour:
   OwnedTiles: []
   tileColor: {r: 0, g: 0, b: 0, a: 0}
   tilesToWin: 0
+  playerColor: Red
 --- !u!1 &1707549537
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,10 @@ public class NewMap : MonoBehaviour
     private readonly float _xOffset = Mathf.Sqrt(3);
     private readonly float _zOffset = 1.5f;
     private readonly List<GameObject> _hexList = new List<GameObject>();
+    public GameObject StartHex;
+    public GameObject MiddleHex;
+    public GameObject Endhex;
+    public CameraController CameraController;
 
 
 
@@ -65,6 +69,21 @@ public class NewMap : MonoBehaviour
 
         foreach (var instance in _hexList)
         {
+            if (current == total/2 - width + width/2)
+            {
+                MiddleHex = instance;
+            }
+
+            if (current == 1)
+            {
+                StartHex = instance;
+            }
+
+            if (current == total)
+            {
+                Endhex = instance;
+            }
+
             if (current <= 2 * width)
             {
                 instance.GetComponent<Tile>().isSpawn = true;
@@ -118,6 +137,7 @@ public class NewMap : MonoBehaviour
         }
         player1.tilesToWin = (int)tilesToWin;
         player2.tilesToWin = (int)tilesToWin;
+        CameraController.CameraSetup();
     }
 
     public List<GameObject> GetHexes()

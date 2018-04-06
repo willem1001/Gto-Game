@@ -482,9 +482,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 1449432507545830, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
-  width: 6
-  height: 6
+  width: 20
+  height: 20
   TurnManager: {fileID: 452872321}
+  StartHex: {fileID: 0}
+  MiddleHex: {fileID: 0}
+  Endhex: {fileID: 0}
+  CameraController: {fileID: 1056017894}
 --- !u!4 &147038005
 Transform:
   m_ObjectHideFlags: 0
@@ -553,6 +557,11 @@ Prefab:
       propertyPath: MapGameObject
       value: 
       objectReference: {fileID: 147038003}
+    - target: {fileID: 114422927519670140, guid: 21abda6043ddb984e83d760d381bb3c2,
+        type: 2}
+      propertyPath: Map
+      value: 
+      objectReference: {fileID: 147038004}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
   m_IsPrefabParent: 0
@@ -873,6 +882,7 @@ MonoBehaviour:
   _players:
   - {fileID: 1651357494}
   - {fileID: 2126649691}
+  MainCamera: {fileID: 1056017894}
 --- !u!4 &452872322
 Transform:
   m_ObjectHideFlags: 0
@@ -1817,6 +1827,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039645349}
+--- !u!114 &1056017894 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114422927519670140, guid: 21abda6043ddb984e83d760d381bb3c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 269456499}
+  m_Script: {fileID: 11500000, guid: d6ce2ebe862954f44a2bd712d1fd0f58, type: 3}
 --- !u!1 &1258567169
 GameObject:
   m_ObjectHideFlags: 0

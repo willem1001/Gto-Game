@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Assets.Scripts;
+using Assets.Scripts.Map;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     public List<Player> _players;
     private int _currentPlayer;
+    public CameraController MainCamera;
 
     void Start()
     {
@@ -33,6 +35,7 @@ public class TurnManager : MonoBehaviour
         {
             _currentPlayer = 0;
         }
+       MainCamera.SwitchTurn();
        GetCurrentPlayer().StartTurn();
     }
 

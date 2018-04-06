@@ -5,6 +5,7 @@ using System.Linq;
 using Assets.Scripts.Map;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class NewSelect : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class NewSelect : MonoBehaviour
     public FactoryFactory Factory;
     private bool _inBuildMode;
     private GameObject _selectedUnit;
+    Text[] texts;
     
 
 
@@ -57,6 +59,8 @@ public class NewSelect : MonoBehaviour
                         if (_selectedUnit != null && _selectedUnit.GetComponent<Unit>() != null)
                         {
                             MoveUnit(tile, _selectedUnit);
+                            if(texts!=null)texts[2].text = "";
+                            if(texts!=null)texts[3].text = "";
                         }
                     }
                 }
@@ -65,9 +69,17 @@ public class NewSelect : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         _selectedUnit = tile.transform.GetChild(0).gameObject;
-
+                        
                         if (_selectedUnit.GetComponent<Unit>() != null)
                         {
+                            GameObject currentPlayer = _selectedUnit.GetComponent<Unit>().player.gameObject;
+                            texts = currentPlayer.GetComponentsInChildren<Text>();
+                            Text currentHealth = texts[2];
+                            Text currentMovement = texts[3];
+                            currentHealth.text=  "Current healt: "+_selectedUnit.gameObject.GetComponent<Unit>().currentHealth.ToString();
+                            currentMovement.text = "Current movement: " + (_selectedUnit.gameObject.GetComponent<Unit>().rangeLeft-1).ToString();
+
+                            
                             FindTiles(tile, _selectedUnit.GetComponent<Unit>().player.isCurrentPlayer);
                         }
                         else if (_selectedUnit.GetComponent<newFactory>() != null &&
@@ -82,6 +94,8 @@ public class NewSelect : MonoBehaviour
                         if (tile.GetComponentInChildren<Unit>() != null)
                         {
                             AttackUnit(tile, _selectedUnit);
+                            if(texts!=null)texts[2].text = "";
+                            if(texts!=null)texts[3].text = "";
                         }
                     }
                 }
@@ -138,6 +152,7 @@ public class NewSelect : MonoBehaviour
 
         movementHexes.Clear();
         attackHexes.Clear();
+        
     }
 
     public void EnterBuildMode()

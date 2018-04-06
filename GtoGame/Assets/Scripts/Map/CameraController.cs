@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Map
 {
@@ -22,19 +23,6 @@ namespace Assets.Scripts.Map
         float startWidthy;
         float centery;
 
-
-        public void Start()
-        {
-                //startWidthx = MapGameObject.GetComponentInChildren<NewMap>().width;
-                //centerx = startWidthx / 2;
-                //PanLimitMin.x = centerx;
-                //PanLimitMax.x = centerx + startWidthx;
-                //startWidthy = MapGameObject.GetComponentInChildren<NewMap>().height;
-                //centery = startWidthy / 2;
-                //PanLimitMin.y = centery - startWidthy;
-                //PanLimitMax.y = centery * 2f;
-        }
-
         public void CameraSetup()
         {
 
@@ -51,9 +39,6 @@ namespace Assets.Scripts.Map
             cameraVector3.x = middle.x;
             cameraVector3.z = middle.z;
             transform.position = cameraVector3;
-
-            Debug.Log("Max" + PanLimitMax.x + " " + PanLimitMax.y);
-            Debug.Log("Min" + PanLimitMin.x + " " + PanLimitMin.y);
 
         }
         // Update is called once per frame
@@ -103,15 +88,8 @@ namespace Assets.Scripts.Map
                 }
             }
 
-            //position.x = Mathf.Clamp(position.x, PanLimitMin.x, PanLimitMax.x);
-            //position.z = Mathf.Clamp(position.z, PanLimitMin.y, PanLimitMax.y);
-            //position.y = Mathf.Clamp(position.y, MinY, MaxY);
-
             var scroll = Input.GetAxis("Mouse ScrollWheel");
             position.y -= scroll * ScrollSpeed * 100f * Time.deltaTime;
-
-            Debug.Log(position.x);
-            Debug.Log(PanLimitMax.x);
 
             if (position.x > PanLimitMax.x || position.x < PanLimitMin.x)
             {
@@ -123,28 +101,58 @@ namespace Assets.Scripts.Map
                 position.z = transform.position.z;
             }
 
+            if (position.y < 5 || position.y > 20)
+            {
+                position.y = transform.position.y;
+            }
+
             transform.position = position;
         }
 
         public void SwitchTurn()
         {
             Vector3 cameraVector3 = transform.position;
-            cameraVector3.x = middle.x;
-            cameraVector3.z = middle.z;
-            transform.position = cameraVector3;
-
+            
+            cameraVector3.y = 17;
+            
             if ((int)this.gameObject.transform.rotation.eulerAngles.y == 0)
             {
-                Vector3 start = this.gameObject.transform.eulerAngles;
-                start.y = 180;
-                this.gameObject.transform.eulerAngles = start;
+                Debug.Log(PanLimitMax.x);
+                cameraVector3.z = PanLimitMax.y;
+                cameraVector3.x = middle.x - 5;
+                StartCoroutine(Rotate(3, 180, cameraVector3));
             }
             else if ((int)this.gameObject.transform.rotation.eulerAngles.y == 180)
             {
-                Vector3 start = this.gameObject.transform.eulerAngles;
-                start.y = 0;
-                this.gameObject.transform.eulerAngles = start;
+                cameraVector3.z = PanLimitMin.y;
+                cameraVector3.x = middle.x + 5;
+                StartCoroutine(Rotate(3, -180, cameraVector3));
             }
+
+//            transform.position = cameraVector3;
+        }
+
+        IEnumerator Rotate(float duration, float amount, Vector3 endPoint)
+        {
+            float startRotation = transform.eulerAngles.y;
+            float endRotation = startRotation + amount;
+            float t = 0.0f;
+            Vector3 add = new Vector3();
+            float movement = Vector3.Distance(transform.position, endPoint) / duration;
+            while (t < duration)
+            {
+                add = transform.eulerAngles;
+                add.y += (endRotation - startRotation) / duration * Time.deltaTime;
+                transform.eulerAngles = add;
+
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, movement * Time.deltaTime);
+
+                t += Time.deltaTime;
+                yield return null;
+            }
+
+            add.y = endRotation;
+            transform.eulerAngles = add;
         }
     }
 }

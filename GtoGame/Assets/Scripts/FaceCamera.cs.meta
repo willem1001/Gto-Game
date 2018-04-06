@@ -5,7 +5,9 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MainCamera: {fileID: 1814208893950436, guid: 21abda6043ddb984e83d760d381bb3c2,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

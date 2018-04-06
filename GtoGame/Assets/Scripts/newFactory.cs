@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Map;
 using Assets.Scripts.Resources;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class newFactory : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class newFactory : MonoBehaviour
             OnDeselect();
             IsSpawning = true;
             currentSpawnTimer = spawnTimer;
+            transform.GetChild(1).GetChild(1).GetComponent<Image>().fillAmount = 1;
         }
     }
 
@@ -97,5 +99,6 @@ public class newFactory : MonoBehaviour
 
         IsSpawning = false;
         SpawnHex = null;
+        transform.GetChild(1).GetChild(1).GetComponent<Image>().fillAmount = 0;
     }
 }

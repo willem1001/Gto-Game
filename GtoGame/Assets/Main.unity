@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a43f39cc2001d24191ec8fab0ff1953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Factory: {fileID: 1721980208883254, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
+  Factory: {fileID: 1993329508060834, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
   Costs:
   - {fileID: 64651456}
   Unit: {fileID: 1434902506827124, guid: cf61a18295a73f84f96022fb9af13929, type: 2}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a43f39cc2001d24191ec8fab0ff1953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Factory: {fileID: 1721980208883254, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
+  Factory: {fileID: 1993329508060834, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
   Costs:
   - {fileID: 89276548}
   Unit: {fileID: 1130576376034748, guid: 345b43cc1cd7c4b4cb4b7de61a8336b5, type: 2}

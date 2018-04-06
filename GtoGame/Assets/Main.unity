@@ -392,8 +392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 1449432507545830, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
-  width: 20
-  height: 20
+  width: 40
+  height: 40
   TurnManager: {fileID: 452872321}
   StartHex: {fileID: 0}
   MiddleHex: {fileID: 0}

@@ -291,7 +291,7 @@ MonoBehaviour:
   Factory: {fileID: 1113308746814168, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
   Costs:
   - {fileID: 64651456}
-  Unit: {fileID: 1999468270461820, guid: cf61a18295a73f84f96022fb9af13929, type: 2}
+  Unit: {fileID: 1494502867806562, guid: cf61a18295a73f84f96022fb9af13929, type: 2}
 --- !u!114 &64651456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   Factory: {fileID: 1113308746814168, guid: c2911678bc5c9f045908424ec3fad15e, type: 2}
   Costs:
   - {fileID: 89276548}
-  Unit: {fileID: 1811742192963942, guid: a5c610b712b0fc944a84814a81f2b114, type: 2}
+  Unit: {fileID: 1819016769989224, guid: a5c610b712b0fc944a84814a81f2b114, type: 2}
 --- !u!114 &89276548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +392,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hex: {fileID: 1449432507545830, guid: 7d9fd05f4c988b8479f787af4daa7764, type: 2}
-  width: 10
-  height: 10
+  width: 6
+  height: 6
   TurnManager: {fileID: 452872321}
   StartHex: {fileID: 0}
   MiddleHex: {fileID: 0}

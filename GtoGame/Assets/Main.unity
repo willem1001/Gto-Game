@@ -414,6 +414,11 @@ Prefab:
       propertyPath: Map
       value: 
       objectReference: {fileID: 147038004}
+    - target: {fileID: 114422927519670140, guid: 21abda6043ddb984e83d760d381bb3c2,
+        type: 2}
+      propertyPath: cameraTurnTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21abda6043ddb984e83d760d381bb3c2, type: 2}
   m_IsPrefabParent: 0

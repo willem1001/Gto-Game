@@ -22,6 +22,7 @@ namespace Assets.Scripts.Map
         float centerx;
         float startWidthy;
         float centery;
+        public float cameraTurnTime;
 
         public void CameraSetup()
         {
@@ -120,29 +121,27 @@ namespace Assets.Scripts.Map
                 Debug.Log(PanLimitMax.x);
                 cameraVector3.z = PanLimitMax.y;
                 cameraVector3.x = middle.x - 5;
-                StartCoroutine(Rotate(3, 180, cameraVector3));
+                StartCoroutine(Rotate(180, cameraVector3));
             }
             else if ((int)this.gameObject.transform.rotation.eulerAngles.y == 180)
             {
                 cameraVector3.z = PanLimitMin.y;
                 cameraVector3.x = middle.x + 5;
-                StartCoroutine(Rotate(3, -180, cameraVector3));
+                StartCoroutine(Rotate(-180, cameraVector3));
             }
-
-//            transform.position = cameraVector3;
         }
 
-        IEnumerator Rotate(float duration, float amount, Vector3 endPoint)
+        IEnumerator Rotate(float amount, Vector3 endPoint)
         {
             float startRotation = transform.eulerAngles.y;
             float endRotation = startRotation + amount;
             float t = 0.0f;
             Vector3 add = new Vector3();
-            float movement = Vector3.Distance(transform.position, endPoint) / duration;
-            while (t < duration)
+            float movement = Vector3.Distance(transform.position, endPoint) / cameraTurnTime;
+            while (t < cameraTurnTime)
             {
                 add = transform.eulerAngles;
-                add.y += (endRotation - startRotation) / duration * Time.deltaTime;
+                add.y += (endRotation - startRotation) / cameraTurnTime * Time.deltaTime;
                 transform.eulerAngles = add;
 
                 transform.position = Vector3.MoveTowards(transform.position, endPoint, movement * Time.deltaTime);

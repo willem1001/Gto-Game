@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 
 
 
-    public class Restart : MonoBehaviour
-    {
-     public void ResetGame()
+public class Restart : MonoBehaviour
+{
+    public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }   
-               
-            
-        
     }
+}
 

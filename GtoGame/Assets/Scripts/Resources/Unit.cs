@@ -40,14 +40,16 @@ public class Unit : MonoBehaviour
             _renderer = GetComponent<Renderer>();
             _renderer.material.color = player.color;
         }
-
         this.player = player;
-
     }
 
-    private void Update()
+    public void CaptureTile()
     {
-        
+        Tile tile = this.GetComponentInParent<Tile>();
+        if (!tile.isSpawn && tile.currentOwner != player)
+        {
+           tile.ChangeOwner(player);
+        }
     }
 
     public void Move(int moved)

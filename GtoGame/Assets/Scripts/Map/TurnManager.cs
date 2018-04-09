@@ -24,13 +24,14 @@ public class TurnManager : MonoBehaviour
 
     public void NextTurn()
     {
+        GetCurrentPlayer().GetComponentInChildren<NewSelect>().Deselect();
+        GetCurrentPlayer().EndTurn();
+
         if (GetCurrentPlayer().haswon())
         {
             GameOver();
         }
 
-        GetCurrentPlayer().GetComponentInChildren<NewSelect>().Deselect();
-        GetCurrentPlayer().EndTurn();
         _currentPlayer++;
         if (_currentPlayer >= _players.Count)
         {

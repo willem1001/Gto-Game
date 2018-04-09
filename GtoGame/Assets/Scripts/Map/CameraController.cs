@@ -118,7 +118,6 @@ namespace Assets.Scripts.Map
             
             if ((int)this.gameObject.transform.rotation.eulerAngles.y == 0)
             {
-                Debug.Log(PanLimitMax.x);
                 cameraVector3.z = PanLimitMax.y;
                 cameraVector3.x = middle.x - 5;
                 StartCoroutine(Rotate(180, cameraVector3));

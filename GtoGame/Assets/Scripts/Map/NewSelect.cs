@@ -52,6 +52,8 @@ public class NewSelect : MonoBehaviour
 
                             Deselect();
                             _selectedUnit = null;
+                            texts[2].text = "";
+                            texts[3].text = "";
                         }
                     }
                     else if (Input.GetMouseButtonDown(1))
@@ -59,8 +61,8 @@ public class NewSelect : MonoBehaviour
                         if (_selectedUnit != null && _selectedUnit.GetComponent<Unit>() != null)
                         {
                             MoveUnit(tile, _selectedUnit);
-                            if(texts!=null)texts[2].text = "";
-                            if(texts!=null)texts[3].text = "";
+                            texts[2].text = "";
+                            texts[3].text = "";
                         }
                     }
                 }
@@ -205,11 +207,6 @@ public class NewSelect : MonoBehaviour
             var move = (int)(Math.Abs(difference.x) + Math.Abs(difference.y) + Math.Abs(difference.z)) / 2;
             unit.GetComponent<Unit>().Move(move);
             tile.GetComponent<Tile>().AddChild(unit);
-
-            if (!tile.GetComponent<Tile>().isSpawn && tile.GetComponent<Tile>().currentOwner != unit.GetComponent<Unit>().player)
-            {
-                tile.GetComponent<Tile>().ChangeOwner(unit.GetComponent<Unit>().player);
-            }
         }
     }
 

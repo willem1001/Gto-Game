@@ -8,8 +8,7 @@ public class FaceCamera : MonoBehaviour
      void Update()
     {
             transform.LookAt(transform.position + MainCamera.transform.rotation * Vector3.forward,
-            MainCamera.transform.rotation * Vector3.up);
-        
+            MainCamera.transform.rotation * Vector3.up);      
     }
 
   

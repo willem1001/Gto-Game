@@ -31,7 +31,11 @@ public class Player : MonoBehaviour
 
     public void EndTurn()
     {
-        
+        foreach (var unit in UnitList)
+        {
+            unit.GetComponent<Unit>().CaptureTile();
+        }
+
         foreach (var factory in FactoryList)
         {
             factory.TurnOver();

@@ -2110,7 +2110,7 @@ MonoBehaviour:
   OwnedTiles: []
   tileColor: {r: 1, g: 1, b: 1, a: 0}
   tilesToWin: 0
-  playerColor: Red
+  playerColor: Blue
 --- !u!4 &1702805008
 Transform:
   m_ObjectHideFlags: 0

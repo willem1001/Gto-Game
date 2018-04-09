@@ -11,7 +11,7 @@ namespace Assets.Scripts.Map
         public Vector2 PanLimitMax;
         public Vector2 PanLimitMin;
         public float ScrollSpeed = 20f;
-        public float duration;
+
         public float MinY = 0f;
         public float MaxY = 40f;
         public NewMap Map;
@@ -120,19 +120,19 @@ namespace Assets.Scripts.Map
                 Debug.Log(PanLimitMax.x);
                 cameraVector3.z = PanLimitMax.y;
                 cameraVector3.x = middle.x - 5;
-                StartCoroutine(Rotate(180, cameraVector3));
+                StartCoroutine(Rotate(3, 180, cameraVector3));
             }
             else if ((int)this.gameObject.transform.rotation.eulerAngles.y == 180)
             {
                 cameraVector3.z = PanLimitMin.y;
                 cameraVector3.x = middle.x + 5;
-                StartCoroutine(Rotate(-180, cameraVector3));
+                StartCoroutine(Rotate(3, -180, cameraVector3));
             }
 
 //            transform.position = cameraVector3;
         }
 
-        IEnumerator Rotate(float amount, Vector3 endPoint)
+        IEnumerator Rotate(float duration, float amount, Vector3 endPoint)
         {
             float startRotation = transform.eulerAngles.y;
             float endRotation = startRotation + amount;

@@ -82,6 +82,9 @@ GameObject:
   - component: {fileID: 23978081673734666}
   - component: {fileID: 114555525545885830}
   - component: {fileID: 114672458691440074}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Canvas
@@ -269,8 +272,11 @@ MonoBehaviour:
   canAttack: 0
   groundOffset: 0.12
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!222 &222099729951994916
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!114 &114672458691440074
 MonoBehaviour:
   m_ObjectHideFlags: 1

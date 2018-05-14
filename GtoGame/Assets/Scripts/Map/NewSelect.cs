@@ -27,6 +27,10 @@ public class NewSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             RaycastHit raycast;
@@ -216,7 +220,7 @@ public class NewSelect : MonoBehaviour
             !tile.GetComponentInChildren<Unit>().player.isCurrentPlayer)
         {
             Unit attackedUnit = tile.GetComponentInChildren<Unit>();
-            attackedUnit.Damaged(unit.GetComponent<Unit>().Attack());
+            attackedUnit.Damaged(unit.GetComponent<Unit>().Attack(), _selectedUnit.GetComponent<Unit>().player.gameObject);
             FindTiles(unit.transform.parent.gameObject, unit);
         }
     }

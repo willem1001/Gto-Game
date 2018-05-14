@@ -503,10 +503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e5d1b3a9980154c8b0aa2d7b51ace9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hex: {fileID: 100000, guid: b8071826fffd07542809e27144afc07d, type: 3}
-  AddedHexes: 1
-  Scale: 1
-  Startwidth: 6
 --- !u!4 &542484869
 Transform:
   m_ObjectHideFlags: 0

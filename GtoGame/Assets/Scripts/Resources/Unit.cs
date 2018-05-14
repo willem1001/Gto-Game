@@ -69,13 +69,14 @@ public class Unit : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, rotationZ - 135, 0));
     }
 
-    public void Damaged(int damage)
+    public void Damaged(int damage, GameObject enemy)
     {
         currentHealth -= damage;
         transform.GetChild(0).GetChild(1).GetComponent<Image>().fillAmount = currentHealth/maxHealth;
 
         if (currentHealth <= 0)
         {
+            enemy.GetComponentInChildren<Resource>().Add(123);
             Die();
         }
 
@@ -83,6 +84,7 @@ public class Unit : MonoBehaviour
 
     private void Die()
     {
+        player.UnitList.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
 
@@ -93,7 +95,7 @@ public class Unit : MonoBehaviour
             canAttack = false;
             return attackDamage + 10;
         }
-
+        
         canAttack = false;
         return attackDamage;
     }
